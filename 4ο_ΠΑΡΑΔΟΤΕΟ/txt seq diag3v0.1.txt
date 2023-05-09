@@ -25,6 +25,8 @@ activate Προϊόντα_Database
 Προϊόντα_Database --> ΣελίδαΚατηγορίαςΠροϊόντων: SendProductCategories
 activate ΣελίδαΚατηγορίαςΠροϊόντων
 deactivate ΣελίδαΕshop
+loop if answer to QuestionForExit is Negative
+loop if answer to QuestionForCheckout is Negative
 Χρήστης -> ΣελίδαΚατηγορίαςΠροϊόντων: SelectProductCategory
 ΣελίδαΚατηγορίαςΠροϊόντων -> Προϊόντα_Database: RequestProductsOfSelectedCategory
 activate ΣελίδαΠροϊόντων
@@ -36,13 +38,14 @@ deactivate ΣελίδαΚατηγορίαςΠροϊόντων
 activate ΣελίδαΚαλαθιού
 deactivate ΣελίδαΠροϊόντων
 Καλάθι --> ΣελίδαΚαλαθιού: SendUpdatedCart
-alt Χρήστης -> ΣελίδαΚαλαθιού: SelectCheckout
- 
-alt case 1
-Χρήστης -> ΣελίδαΚαλαθιού:DoNotCheckout
-else case 2 
-Χρήστης -> ΣελίδαΚαλαθιού: SelectNotToCheckout
+ΣελίδαΚαλαθιού ->Χρήστης: QuestionForCheckout
+Χρήστης -> ΣελίδαΚαλαθιού:Negative
 end
+
+Χρήστης -> ΣελίδαΚαλαθιού:Positive
+
+
+
 
 ΣελίδαΚαλαθιού -> ΣελίδαCheckout: RequestCheckoutProcess
 activate ΣελίδαCheckout
@@ -61,7 +64,7 @@ activate ΣελίδαΈκπτωσης
 ΣελίδαΈκπτωσης ->ΣελίδαCheckout : SendSelectedDiscount
 
 
-alt
+alt PaymentWithCard
 Χρήστης -> ΣελίδαCheckout: SelectPaymentMethod(card)
 else PaymentWithCash
 Χρήστης -> ΣελίδαCheckout: SelectsPaymentMethod(cash)
@@ -71,12 +74,14 @@ end
 Χρήστης -> ΣελίδαCheckout: ProvidePaymentDetails
 Χρήστης -> ΣελίδαReview: ConfirmOrder
 ΣελίδαReview --> Χρήστης: SendOrderConfirmation
-
+ΣελίδαReview ->Χρήστης: QuestionForExit
 alt CancelOrderAndContinue
-Χρήστης -> ΣελίδαReview: DoesNotConfirmOrder
-??
-else CancelOrderAndExit
-Χρήστης -> ΣελίδαReview: DoesNotConfirmOrder
 
-ΣελίδαΚατηγορίαςΠροϊόντων -> ΣελίδαΕshop: Exit
+Χρήστης --> ΣελίδαReview:Negative
+
+else CancelOrderAndExit
+Χρήστης --> ΣελίδαReview: Positive
+
+ΣελίδαReview ->Χρήστης : EndMessage
 end
+end 
