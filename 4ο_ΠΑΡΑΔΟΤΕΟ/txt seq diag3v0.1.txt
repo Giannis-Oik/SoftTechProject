@@ -36,11 +36,12 @@ deactivate ΣελίδαΚατηγορίαςΠροϊόντων
 activate ΣελίδαΚαλαθιού
 deactivate ΣελίδαΠροϊόντων
 Καλάθι --> ΣελίδαΚαλαθιού: SendUpdatedCart
-Χρήστης -> ΣελίδαΚαλαθιού: SelectCheckout
+alt Χρήστης -> ΣελίδαΚαλαθιού: SelectCheckout
  
-alt DoNotCheckout
+alt case 1
+Χρήστης -> ΣελίδαΚαλαθιού:DoNotCheckout
+else case 2 
 Χρήστης -> ΣελίδαΚαλαθιού: SelectNotToCheckout
-??
 end
 
 ΣελίδαΚαλαθιού -> ΣελίδαCheckout: RequestCheckoutProcess
@@ -48,6 +49,7 @@ activate ΣελίδαCheckout
 deactivate ΣελίδαΚαλαθιού
 ΣελίδαCheckout -> Προϊόντα_Database: GetPrices
 Προϊόντα_Database --> Order: ReturnPrices
+deactivate Προϊόντα_Database
 Order -> Order: CalculateTotalAmount
 Order -> ΣελίδαCheckout: SendTotalAmount
 Χρήστης -> ΣελίδαCheckout: ProvideAddressInformation
@@ -55,26 +57,18 @@ Order -> Order: CalculateShipping
 Order -> ΣελίδαCheckout: AddShipping
 activate ΣελίδαΈκπτωσης
 ΣελίδαΈκπτωσης -> Χρήστης: SendAvailableDiscounts
-Χρήστης -> ΣελίδαΈκπτωσης: SelectDiscount
+Χρήστης --> ΣελίδαΈκπτωσης: SelectDiscount
 ΣελίδαΈκπτωσης ->ΣελίδαCheckout : SendSelectedDiscount
-
-Χρήστης -> ΣελίδαCheckout: SelectPaymentMethod
-Χρήστης -> ΣελίδαCheckout: ProvidePaymentDetails
-
-
 
 
 alt
 Χρήστης -> ΣελίδαCheckout: SelectPaymentMethod(card)
-
-
-
 else PaymentWithCash
 Χρήστης -> ΣελίδαCheckout: SelectsPaymentMethod(cash)
 Order -> Order: CalculateCOD
 Order -> ΣελίδαCheckout: AddCOD
 end 
-
+Χρήστης -> ΣελίδαCheckout: ProvidePaymentDetails
 Χρήστης -> ΣελίδαReview: ConfirmOrder
 ΣελίδαReview --> Χρήστης: SendOrderConfirmation
 
@@ -86,4 +80,3 @@ else CancelOrderAndExit
 
 ΣελίδαΚατηγορίαςΠροϊόντων -> ΣελίδαΕshop: Exit
 end
-
