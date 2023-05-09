@@ -1,0 +1,79 @@
+title: Τοποθέτηση Παραγγελίας
+
+actor Χρήστης
+boundary ΣελίδαΕshop
+boundary ΣελίδαΚατηγορίαςΠροϊόντων
+boundary ΣελίδαΠροϊόντων
+2o βήμα στη βασική ροη αλλαγή σε: Το σύστημα αντλεί τις κατηγορίες από τη ΒΔ και εμφανίζει τη σελίδα κατηγοριών.
+
+
+boundary ΣελίδαΚαλαθιού
+boundary ΣελίδαCheckout
+boundary ΣελίδαΈκπτωσης
+boundary ΣελίδαReview
+entity Προϊόντα
+entity Καλάθι
+database Προϊόντα_Database
+
+
+Χρήστης -> ΣελίδαΕshop: SelectPlaceOrderFunction
+ΣελίδαΕshop -> ΣελίδαΚατηγορίαςΠροϊόντων: RequestProductCategories
+ΣελίδαΚατηγορίαςΠροϊόντων -> Προϊόντα_Database: FetchProductCategories
+Προϊόντα_Database -> ΣελίδαΚατηγορίαςΠροϊόντων: SendProductCategories
+Χρήστης -> ΣελίδαΚατηγορίαςΠροϊόντων: SelectProductCategory
+ΣελίδαΚατηγορίαςΠροϊόντων -> Προϊόντα_Database: RequestProductOfSelectedCategory
+Προϊόντα_Database -> ΣελίδαΠροϊόντων: FetchProductFromDatabase
+ΣελίδαΠροϊόντων -> ΣελίδαΚατηγορίαςΠροϊόντων: SendProduct
+Χρήστης -> ΣελίδαΠροϊόντων: AddToCart
+ΣελίδαΠροϊόντων -> Καλάθι: AddToCart
+Καλάθι -> ΣελίδαΚαλαθιού: SendUpdatedCart
+Χρήστης -> ΣελίδαΚαλαθιού: SelectCheckout
+ 
+alt DoNotCheckout
+Χρήστης -> ΣελίδαΚαλαθιού: SelectNotToCheckout
+??
+end
+
+ΣελίδαΚαλαθιού -> ΣελίδαCheckout: RequestCheckoutProcess
+ΣελίδαCheckout -> Προϊόντα_Database: CalculateTotalAmount
+Προϊόντα_Database -> System: GetPrices
+System -> System: CalculateTotalAmount
+System -> Προϊόντα_Database: SendTotalAmount
+Χρήστης -> ΣελίδαCheckout: ProvideAddressInformation
+ΣελίδαCheckout -> Προϊόντα_Database: SendAddressInformation
+System -> System: CalculateShipping
+System -> Προϊόντα_Database: AddShipping
+
+System -> ΣελίδαΈκπτωσης: SendAvailableDiscounts
+Χρήστης -> ΣελίδαΈκπτωσης: SelectDiscount
+ΣελίδαΈκπτωσης -> Προϊόντα_Database: SendSelectedDiscount
+Προϊόντα_Database -> ΣελίδαCheckout: SendPaymentOptions
+Χρήστης -> ΣελίδαCheckout: SelectPaymentMethod
+Χρήστης -> ΣελίδαCheckout: ProvidePaymentDetails
+ΣελίδαCheckout -> Προϊόντα_Database: SendPaymentInformation
+
+
+
+alt
+Χρήστης -> ΣελίδαCheckout: SelectPaymentMethod(card)
+
+
+
+else PaymentWithCash
+Χρήστης -> ΣελίδαCheckout: SelectsPaymentMethodAsCash
+System -> System: CalculateCOD
+
+end 
+
+Χρήστης -> ΣελίδαReview: ConfirmOrder
+ΣελίδαReview -> Χρήστη: SendOrderConfirmation
+
+alt CancelOrderAndContinue
+Χρήστης -> ΣελίδαReview: DoesNotConfirmOrder
+??
+else CancelOrderAndExit
+Χρήστης -> ΣελίδαReview: DoesNotConfirmOrder
+
+ΣελίδαΚατηγορίαςΠροϊόντων -> ΣελίδαΕshop: Exit
+end
+
