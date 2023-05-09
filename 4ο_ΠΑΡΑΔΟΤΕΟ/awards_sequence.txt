@@ -1,0 +1,57 @@
+title 6) ΕΠΙΤΕΥΓΜΑΤΑ ΚΑΙ ΕΠΙΒΡΑΒΕΥΣΗ
+
+actor ΧΡΗΣΤΗΣ
+
+boundary ΣΕΛΙΔΑ ΕΠΙΤΕΥΓΜΑΤΩΝ ΚΑΙ ΕΠΙΒΡΑΒΕΥΣΕΩΝ
+entity ΚΑΘΗΜΕΡΙΝΟ MINI WORKOUT
+boundary ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ
+boundary ΣΕΛΙΔΑ ΠΡΟΣΩΠΙΚΗΣ ΕΚΓΥΜΝΑΣΗΣ
+entity ΗΜΕΡΗΣΙΟ ΣΥΝΟΛΟ
+boundary ΣΕΛΙΔΑ ΗΜΕΡΗΣΙΩΝ ΘΕΡΜΙΔΩΝ
+entity ΠΡΟΦΙΛ
+boundary ΑΡΧΙΚΗ ΣΕΛΙΔΑ
+
+activate ΣΕΛΙΔΑ ΕΠΙΤΕΥΓΜΑΤΩΝ ΚΑΙ ΕΠΙΒΡΑΒΕΥΣΕΩΝ
+ΧΡΗΣΤΗΣ->ΣΕΛΙΔΑ ΕΠΙΤΕΥΓΜΑΤΩΝ ΚΑΙ ΕΠΙΒΡΑΒΕΥΣΕΩΝ: ΕΠΙΛΟΓΗ ΕΠΙΒΡΑΒΕΥΣΗ ΚΑΙ ΕΠΙΤΕΥΓΜΑΤΑ
+ΣΕΛΙΔΑ ΕΠΙΤΕΥΓΜΑΤΩΝ ΚΑΙ ΕΠΙΒΡΑΒΕΥΣΕΩΝ->ΚΑΘΗΜΕΡΙΝΟ MINI WORKOUT:show_mini_workout()
+deactivate ΣΕΛΙΔΑ ΕΠΙΤΕΥΓΜΑΤΩΝ ΚΑΙ ΕΠΙΒΡΑΒΕΥΣΕΩΝ
+
+activate ΚΑΘΗΜΕΡΙΝΟ MINI WORKOUT
+alt ΕΚΠΛΗΡΩΣΗ MINI WORKOUT
+ΚΑΘΗΜΕΡΙΝΟ MINI WORKOUT->ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ:mini_workout_done()
+activate ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ
+else MH ΕΚΠΛΗΡΩΣΗ MINI WORKOUT
+ΚΑΘΗΜΕΡΙΝΟ MINI WORKOUT->ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ:mini_workout_not_done()
+end 
+deactivate ΚΑΘΗΜΕΡΙΝΟ MINI WORKOUT
+
+
+ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ->ΣΕΛΙΔΑ ΠΡΟΣΩΠΙΚΗΣ ΕΚΓΥΜΝΑΣΗΣ:show_personal_program()
+activate ΣΕΛΙΔΑ ΠΡΟΣΩΠΙΚΗΣ ΕΚΓΥΜΝΑΣΗΣ
+
+alt ΜΗ ΕΚΠΛΗΡΩΣΗ ΠΡΟΣΩΠΙΚΟΥ ΠΡΟΓΡΑΜΜΑΤΟΣ ΕΚΓΥΜΝΑΣΗΣ
+ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ<--ΣΕΛΙΔΑ ΠΡΟΣΩΠΙΚΗΣ ΕΚΓΥΜΝΑΣΗΣ:personal_program_not_done()
+else ΕΚΠΛΗΡΩΣΗ ΠΡΟΣΩΠΙΚΟΥ ΠΡΟΓΡΑΜΜΑΤΟΣ ΕΚΓΥΜΝΑΣΗΣ
+ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ<--ΣΕΛΙΔΑ ΠΡΟΣΩΠΙΚΗΣ ΕΚΓΥΜΝΑΣΗΣ:personal_program_done()
+deactivate ΣΕΛΙΔΑ ΠΡΟΣΩΠΙΚΗΣ ΕΚΓΥΜΝΑΣΗΣ
+end 
+
+
+ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ->ΗΜΕΡΗΣΙΟ ΣΥΝΟΛΟ:calculate_points_per_activity()
+activate ΗΜΕΡΗΣΙΟ ΣΥΝΟΛΟ
+deactivate ΣΕΛΙΔΑ ΕΚΠΛΗΡΩΣΗΣ
+
+ΧΡΗΣΤΗΣ->ΣΕΛΙΔΑ ΗΜΕΡΗΣΙΩΝ ΘΕΡΜΙΔΩΝ:add_calories()
+activate ΣΕΛΙΔΑ ΗΜΕΡΗΣΙΩΝ ΘΕΡΜΙΔΩΝ
+ΗΜΕΡΗΣΙΟ ΣΥΝΟΛΟ<--ΣΕΛΙΔΑ ΗΜΕΡΗΣΙΩΝ ΘΕΡΜΙΔΩΝ:calculate_points_per_calories()
+deactivate ΣΕΛΙΔΑ ΗΜΕΡΗΣΙΩΝ ΘΕΡΜΙΔΩΝ
+
+ΗΜΕΡΗΣΙΟ ΣΥΝΟΛΟ->ΠΡΟΦΙΛ:update_user_category()
+deactivate ΗΜΕΡΗΣΙΟ ΣΥΝΟΛΟ
+activate ΠΡΟΦΙΛ
+alt ΜΕΤΑΒΑΣΗ ΣΤΟ ΚΑΤΑΣΤΗΜΑ
+ΠΡΟΦΙΛ->ΑΡΧΙΚΗ ΣΕΛΙΔΑ : go_to_shop()
+else ΕΞΟΔΟΣ
+ΠΡΟΦΙΛ->ΑΡΧΙΚΗ ΣΕΛΙΔΑ : exit()
+deactivate ΠΡΟΦΙΛ
+end
