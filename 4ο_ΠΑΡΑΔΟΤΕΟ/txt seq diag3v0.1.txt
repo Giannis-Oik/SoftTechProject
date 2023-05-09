@@ -12,7 +12,7 @@ boundary ΣελίδαΚαλαθιού
 entity Καλάθι
 boundary ΣελίδαCheckout
 entity Order
-boundary ΣελίδαΈκπτωσης
+boundary ΣελίδαΠληρωμής
 boundary ΣελίδαReview
 entity cart
 
@@ -49,6 +49,9 @@ end
 
 ΣελίδαΚαλαθιού -> ΣελίδαCheckout: RequestCheckoutProcess
 activate ΣελίδαCheckout
+ΣελίδαΚαλαθιού -> Χρήστης: SendAvailableDiscounts
+Χρήστης --> ΣελίδαΚαλαθιού: SelectDiscount
+ΣελίδαΚαλαθιού ->ΣελίδαCheckout : SendSelectedDiscount
 deactivate ΣελίδαΚαλαθιού
 ΣελίδαCheckout -> Προϊόντα_Database: GetPrices
 Προϊόντα_Database --> Order: ReturnPrices
@@ -58,10 +61,8 @@ Order -> ΣελίδαCheckout: SendTotalAmount
 Χρήστης -> ΣελίδαCheckout: ProvideAddressInformation
 Order -> Order: CalculateShipping
 Order -> ΣελίδαCheckout: AddShipping
-activate ΣελίδαΈκπτωσης
-ΣελίδαΈκπτωσης -> Χρήστης: SendAvailableDiscounts
-Χρήστης --> ΣελίδαΈκπτωσης: SelectDiscount
-ΣελίδαΈκπτωσης ->ΣελίδαCheckout : SendSelectedDiscount
+activate ΣελίδαΠληρωμής
+
 
 
 alt PaymentWithCard
