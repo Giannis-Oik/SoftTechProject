@@ -4,29 +4,38 @@ actor Χρήστης
 boundary ΣελίδαΕshop
 boundary ΣελίδαΚατηγορίαςΠροϊόντων
 boundary ΣελίδαΠροϊόντων
-2o βήμα στη βασική ροη αλλαγή σε: Το σύστημα αντλεί τις κατηγορίες από τη ΒΔ και εμφανίζει τη σελίδα κατηγοριών.
-
-
-boundary ΣελίδαΚαλαθιού
-boundary ΣελίδαCheckout
-boundary ΣελίδαΈκπτωσης
-boundary ΣελίδαReview
+//2o βήμα στη βασική ροη αλλαγή σε: Το σύστημα αντλεί τις κατηγορίες από τη ΒΔ και εμφανίζει τη σελίδα κατηγοριών.
 entity Προϊόντα
-entity Καλάθι
 database Προϊόντα_Database
 
+boundary ΣελίδαΚαλαθιού
+entity Καλάθι
+boundary ΣελίδαCheckout
+entity Order
+boundary ΣελίδαΈκπτωσης
+boundary ΣελίδαReview
+entity cart
 
+
+activate ΣελίδαΕshop
+activate Προϊόντα_Database
 Χρήστης -> ΣελίδαΕshop: SelectPlaceOrderFunction
 ΣελίδαΕshop -> ΣελίδαΚατηγορίαςΠροϊόντων: RequestProductCategories
 ΣελίδαΚατηγορίαςΠροϊόντων -> Προϊόντα_Database: FetchProductCategories
-Προϊόντα_Database -> ΣελίδαΚατηγορίαςΠροϊόντων: SendProductCategories
+Προϊόντα_Database --> ΣελίδαΚατηγορίαςΠροϊόντων: SendProductCategories
+activate ΣελίδαΚατηγορίαςΠροϊόντων
+deactivate ΣελίδαΕshop
 Χρήστης -> ΣελίδαΚατηγορίαςΠροϊόντων: SelectProductCategory
-ΣελίδαΚατηγορίαςΠροϊόντων -> Προϊόντα_Database: RequestProductOfSelectedCategory
-Προϊόντα_Database -> ΣελίδαΠροϊόντων: FetchProductFromDatabase
-ΣελίδαΠροϊόντων -> ΣελίδαΚατηγορίαςΠροϊόντων: SendProduct
+ΣελίδαΚατηγορίαςΠροϊόντων -> Προϊόντα_Database: RequestProductsOfSelectedCategory
+activate ΣελίδαΠροϊόντων
+deactivate ΣελίδαΚατηγορίαςΠροϊόντων
+Προϊόντα_Database --> ΣελίδαΠροϊόντων: SendProductsOfSelectedCategoryFromDatabase
+
 Χρήστης -> ΣελίδαΠροϊόντων: AddToCart
 ΣελίδαΠροϊόντων -> Καλάθι: AddToCart
-Καλάθι -> ΣελίδαΚαλαθιού: SendUpdatedCart
+activate ΣελίδαΚαλαθιού
+deactivate ΣελίδαΠροϊόντων
+Καλάθι --> ΣελίδαΚαλαθιού: SendUpdatedCart
 Χρήστης -> ΣελίδαΚαλαθιού: SelectCheckout
  
 alt DoNotCheckout
@@ -35,22 +44,23 @@ alt DoNotCheckout
 end
 
 ΣελίδαΚαλαθιού -> ΣελίδαCheckout: RequestCheckoutProcess
-ΣελίδαCheckout -> Προϊόντα_Database: CalculateTotalAmount
-Προϊόντα_Database -> System: GetPrices
-System -> System: CalculateTotalAmount
-System -> Προϊόντα_Database: SendTotalAmount
+activate ΣελίδαCheckout
+deactivate ΣελίδαΚαλαθιού
+ΣελίδαCheckout -> Προϊόντα_Database: GetPrices
+Προϊόντα_Database --> Order: ReturnPrices
+Order -> Order: CalculateTotalAmount
+Order -> ΣελίδαCheckout: SendTotalAmount
 Χρήστης -> ΣελίδαCheckout: ProvideAddressInformation
-ΣελίδαCheckout -> Προϊόντα_Database: SendAddressInformation
-System -> System: CalculateShipping
-System -> Προϊόντα_Database: AddShipping
-
-System -> ΣελίδαΈκπτωσης: SendAvailableDiscounts
+Order -> Order: CalculateShipping
+Order -> ΣελίδαCheckout: AddShipping
+activate ΣελίδαΈκπτωσης
+ΣελίδαΈκπτωσης -> Χρήστης: SendAvailableDiscounts
 Χρήστης -> ΣελίδαΈκπτωσης: SelectDiscount
-ΣελίδαΈκπτωσης -> Προϊόντα_Database: SendSelectedDiscount
-Προϊόντα_Database -> ΣελίδαCheckout: SendPaymentOptions
+ΣελίδαΈκπτωσης ->ΣελίδαCheckout : SendSelectedDiscount
+
 Χρήστης -> ΣελίδαCheckout: SelectPaymentMethod
 Χρήστης -> ΣελίδαCheckout: ProvidePaymentDetails
-ΣελίδαCheckout -> Προϊόντα_Database: SendPaymentInformation
+
 
 
 
@@ -60,13 +70,13 @@ alt
 
 
 else PaymentWithCash
-Χρήστης -> ΣελίδαCheckout: SelectsPaymentMethodAsCash
-System -> System: CalculateCOD
-
+Χρήστης -> ΣελίδαCheckout: SelectsPaymentMethod(cash)
+Order -> Order: CalculateCOD
+Order -> ΣελίδαCheckout: AddCOD
 end 
 
 Χρήστης -> ΣελίδαReview: ConfirmOrder
-ΣελίδαReview -> Χρήστη: SendOrderConfirmation
+ΣελίδαReview --> Χρήστης: SendOrderConfirmation
 
 alt CancelOrderAndContinue
 Χρήστης -> ΣελίδαReview: DoesNotConfirmOrder
