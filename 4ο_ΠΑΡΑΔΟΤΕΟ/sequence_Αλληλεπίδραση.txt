@@ -1,0 +1,74 @@
+title Αλληλεπίδραση με τους άλλους χρήστες
+
+actor Χρήστης
+boundary Forum
+boundary Σελίδα δημοσίευσης
+boundary Σελίδα εισερχόμενων μηνυμάτων
+boundary Σελίδα Προφίλ
+boundary Δημοσιευμένο Περιεχόμενο
+
+activate Χρήστης
+Χρήστης->Forum: login()
+activate Forum
+Forum-->Χρήστης: makePost()
+alt #2f2e7b #white case NO
+  Forum -->Χρήστης:Μήνυμα επιβεβαίωσης
+  Forum->Σελίδα εισερχόμενων μηνυμάτων:openMessagesPage()
+  activate Σελίδα εισερχόμενων μηνυμάτων
+else case YES
+  Forum->Σελίδα δημοσίευσης:openPostPage()
+  activate Σελίδα δημοσίευσης
+  Σελίδα δημοσίευσης-->Forum: writePost()
+  deactivate Forum
+  Χρήστης->Σελίδα δημοσίευσης: Δημοσίευση
+  alt case PostAppropriate
+  activate Forum
+  Forum->Σελίδα δημοσίευσης: confirm()
+  deactivate Forum
+  else case PostInnappropriate
+  activate Forum
+  Σελίδα δημοσίευσης-->Forum:warningMessage()
+  Σελίδα δημοσίευσης-->Forum:writePost()
+  deactivate Forum
+  Χρήστης->Σελίδα δημοσίευσης:Δημοσίευση
+  Forum->Σελίδα δημοσίευσης:confirm()
+  activate Forum
+  Σελίδα δημοσίευσης->Σελίδα εισερχόμενων μηνυμάτων:openMessagesPage()
+  deactivate Forum
+  end  
+end
+alt #2f2e7b #white case ShowMessages
+   Σελίδα εισερχόμενων μηνυμάτων -->Σελίδα δημοσίευσης:showMessages()
+   deactivate Σελίδα δημοσίευσης
+   Χρήστης -->Σελίδα εισερχόμενων μηνυμάτων:Αποστολή μηνυμάτων
+   Σελίδα Προφίλ-->Σελίδα εισερχόμενων μηνυμάτων : showProfilePage()
+   activate Σελίδα δημοσίευσης
+   activate Σελίδα Προφίλ
+else case DontShowMessages
+   Σελίδα εισερχόμενων μηνυμάτων --> Σελίδα δημοσίευσης:Μήνυμα επιβεβαίωσης
+   deactivate Σελίδα δημοσίευσης
+   Σελίδα Προφίλ-->Σελίδα εισερχόμενων μηνυμάτων:showProfilePage()
+end
+alt #2f2e7b #white case ShowProfilePage
+   Σελίδα εισερχόμενων μηνυμάτων->Σελίδα Προφίλ:openList()
+   Σελίδα Προφίλ-->Σελίδα εισερχόμενων μηνυμάτων:Άνοιγμα Λίστας
+   deactivate Σελίδα εισερχόμενων μηνυμάτων
+   Χρήστης ->Σελίδα Προφίλ: Βλέπει προφίλ χρηστών
+   activate Σελίδα εισερχόμενων μηνυμάτων
+   Σελίδα Προφίλ -->Σελίδα εισερχόμενων μηνυμάτων: follow()
+   alt case Follow
+     Σελίδα Προφίλ -->Σελίδα εισερχόμενων μηνυμάτων:connect()
+     Σελίδα Προφίλ->Δημοσιευμένο Περιεχόμενο:gotoFeed()
+     activate Δημοσιευμένο Περιεχόμενο
+   else case DontFollow
+     Σελίδα Προφίλ-->Σελίδα εισερχόμενων μηνυμάτων:noconnection()
+     Σελίδα Προφίλ ->Δημοσιευμένο Περιεχόμενο:gotoFeed()
+     
+   end 
+else case DontShowProfilePage
+     Σελίδα εισερχόμενων μηνυμάτων -> Σελίδα Προφίλ:closeList()
+     deactivate Σελίδα εισερχόμενων μηνυμάτων
+     Σελίδα Προφίλ->Δημοσιευμένο Περιεχόμενο:gotoFeed()
+     deactivate Σελίδα Προφίλ
+end
+Χρήστης ->Δημοσιευμένο Περιεχόμενο: Περιηγείται

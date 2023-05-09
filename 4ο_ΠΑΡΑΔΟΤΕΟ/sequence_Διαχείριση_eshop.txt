@@ -1,0 +1,92 @@
+title Διαχείριση Eshop
+
+actor Διαχειριστής
+boundary Eshop
+entity Stock
+boundary Σελίδα καταλόγου Προϊόντων
+boundary Σελίδα κατηγοριών
+boundary Σελίδα κοστολόγησης
+boundary Σελίδα επιβεβαίωσης
+
+activate Eshop 
+activate Διαχειριστής
+
+Διαχειριστής->Eshop:editEshop()\n
+Eshop->Stock:checkStock()
+activate Stock
+alt #2f2e7b #white case NotMissing
+  Stock-->Eshop:Δεν λείπουν προϊόντα
+  Eshop-->Διαχειριστής:Άλλες αλλαγές;
+  alt case NO
+  Διαχειριστής->Eshop:exit()
+  else case YES
+  Διαχειριστής->Stock:changeThings()
+  end
+else case Missing
+  Stock-->Eshop:Λείπουν πρϊόντα
+  Διαχειριστής->Stock:changeThings()
+end 
+activate Σελίδα καταλόγου Προϊόντων
+deactivate Eshop
+Stock->Σελίδα καταλόγου Προϊόντων: applyChanges()
+deactivate Stock
+Σελίδα καταλόγου Προϊόντων-->Διαχειριστής:Κατηγοριοποίηση;
+alt #2f2e7b #white case DontCategorize
+   Διαχειριστής->Σελίδα καταλόγου Προϊόντων:Αρνητική επιλογή
+   activate Stock
+   Σελίδα καταλόγου Προϊόντων -->Stock:Αλλαγές στις τιμές;
+   deactivate Stock
+   alt #2f2e7b #white case ChangePrices
+      activate Σελίδα κοστολόγησης
+      Σελίδα καταλόγου Προϊόντων ->Σελίδα κοστολόγησης: openPricingPage()
+      Σελίδα κοστολόγησης -->Σελίδα καταλόγου Προϊόντων:makeChanges()
+      deactivate Σελίδα καταλόγου Προϊόντων
+      Διαχειριστής ->Σελίδα κοστολόγησης: Αλλαγές
+      deactivate Σελίδα κοστολόγησης
+      activate Σελίδα επιβεβαίωσης
+      activate Σελίδα καταλόγου Προϊόντων
+      Σελίδα επιβεβαίωσης -->Σελίδα καταλόγου Προϊόντων: confirmChanges()
+      deactivate Σελίδα καταλόγου Προϊόντων
+      Διαχειριστής ->Σελίδα επιβεβαίωσης: Επιβεβαίωση
+   else case DontChangePrices
+      activate Σελίδα καταλόγου Προϊόντων
+      Σελίδα επιβεβαίωσης -->Σελίδα καταλόγου Προϊόντων: confirmChanges()
+      deactivate Σελίδα καταλόγου Προϊόντων
+      Διαχειριστής ->Σελίδα επιβεβαίωσης: Επιβεβαίωση
+      deactivate Σελίδα επιβεβαίωσης
+   end
+   
+   
+else case Categorize
+   activate Σελίδα καταλόγου Προϊόντων
+   activate Σελίδα κατηγοριών
+   Διαχειριστής->Σελίδα καταλόγου Προϊόντων:Επιλογή κατηγοριοποίησης
+   Σελίδα καταλόγου Προϊόντων->Σελίδα κατηγοριών:sortInΣελίδα κατηγοριών()
+   alt case WrongCategory
+   Σελίδα κατηγοριών-->Σελίδα καταλόγου Προϊόντων:Μήνυμα λάθους κατηγορίας
+   deactivate Σελίδα καταλόγου Προϊόντων
+   Διαχειριστής->Σελίδα κατηγοριών:sortInΣελίδα κατηγοριών()
+   end
+end
+activate Σελίδα καταλόγου Προϊόντων
+Σελίδα κατηγοριών -->Σελίδα καταλόγου Προϊόντων: Άλλαγές στις τιμές;
+deactivate Σελίδα καταλόγου Προϊόντων
+alt #2f2e7b #white case ChangePrices
+      activate Σελίδα κοστολόγησης
+      Σελίδα κατηγοριών ->Σελίδα κοστολόγησης: openPricingPage()
+      Σελίδα κοστολόγησης -->Σελίδα κατηγοριών:makeChanges()
+      deactivate Σελίδα κατηγοριών
+      Διαχειριστής ->Σελίδα κοστολόγησης: Αλλαγές
+      deactivate Σελίδα κοστολόγησης
+      activate Σελίδα επιβεβαίωσης
+      activate Σελίδα κατηγοριών
+      Σελίδα επιβεβαίωσης -->Σελίδα κατηγοριών: confirmChanges()
+      deactivate Σελίδα κατηγοριών
+      Διαχειριστής ->Σελίδα επιβεβαίωσης: Επιβεβαίωση
+   else case DontChangePrices
+      activate Σελίδα κατηγοριών
+      Σελίδα επιβεβαίωσης -->Σελίδα κατηγοριών: confirmChanges()
+      deactivate Σελίδα κατηγοριών
+      Διαχειριστής ->Σελίδα επιβεβαίωσης: Επιβεβαίωση
+      deactivate Σελίδα επιβεβαίωσης
+   end
