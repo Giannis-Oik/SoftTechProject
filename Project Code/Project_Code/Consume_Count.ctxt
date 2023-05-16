@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Consume_Count
+comment1.params=
+comment1.target=Consume_Count()
+comment2.params=FoodList\ DrinksList
+comment2.target=void\ Count_Start(java.util.ArrayList,\ java.util.ArrayList)
+numComments=3

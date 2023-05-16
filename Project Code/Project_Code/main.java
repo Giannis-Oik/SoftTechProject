@@ -1,7 +1,11 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class main 
 {
+    static ArrayList<Food> FoodList = new ArrayList<Food>();
+    static ArrayList<Drink> DrinksList = new ArrayList<Drink>();
+    static ArrayList<Exercise> ExerciseList = new ArrayList<Exercise>();
     public static void main()
     {
         System.out.println("Main menu:");
@@ -26,6 +30,7 @@ public class main
                 break;
             case 2:
                 System.out.println("Calorie counter.");
+                Calorie_Counter.CounterStartUp(FoodList, DrinksList, ExerciseList);
                 break;
             case 3:
                 System.out.println("Place order.");
