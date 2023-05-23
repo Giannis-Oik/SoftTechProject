@@ -46,6 +46,7 @@ public class main
                 break;
             case 7:
                 System.out.println("Eshop(admin only).");
+                EShopAdministration.checkadmin();
                 break;
             case 8:
                 System.out.println("Forum.");
