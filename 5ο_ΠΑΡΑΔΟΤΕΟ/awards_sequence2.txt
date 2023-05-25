@@ -1,0 +1,52 @@
+title 6) REWARDS
+
+actor USER
+
+participant Main_Menu
+participant Mini_Workout
+participant Daily_Total
+participant Personal_Workout
+participant Daily_Calories
+participant User_Profile
+
+USER->Main_Menu:CHOOSE REWARDS
+activate Main_Menu
+Main_Menu->Mini_Workout:show_mini_workout()
+deactivate Main_Menu
+activate Mini_Workout
+
+alt MINI WORKOUT DONE
+Mini_Workout->Daily_Total: addPoints()
+activate Daily_Total
+else MINI WORKOUT DONE
+Mini_Workout->Daily_Total: deducePoints()
+deactivate Mini_Workout
+end 
+
+Daily_Total->Personal_Workout:showPersonalWorkout()
+deactivate Daily_Total
+activate Personal_Workout
+
+alt PERSONAL WORKOUT NOT DONE
+Personal_Workout-->Daily_Total:deducePoints()
+activate Daily_Total
+else PERSONAL WORKOUT DONE
+Personal_Workout-->Daily_Total:addPoints()
+deactivate Personal_Workout
+end 
+
+Daily_Total-->USER:MESSAGE TO ADD DAILY CALORIES
+deactivate Daily_Total
+USER->Daily_Calories:addCalories()
+activate Daily_Calories
+Daily_Calories-->Daily_Total:calculateCaloriePoints()
+activate Daily_Total
+deactivate Daily_Calories
+
+Daily_Total->User_Profile:updateCategory()
+deactivate Daily_Total
+activate User_Profile
+User_Profile-->Main_Menu:exit()
+activate Main_Menu
+deactivate User_Profile
+

@@ -1,0 +1,48 @@
+title 5) LOGIN/SIGN UP
+
+actor USER
+
+participant Main_Menu
+participant User
+participant User_Profile
+
+USER->Main_Menu: CHOOSE LOGIN/SIGN UP
+activate Main_Menu
+Main_Menu->User:login()
+activate User
+deactivate Main_Menu
+alt DON'T HAVE A PROFILE
+User->User_Profile:createProfile()
+
+activate User_Profile
+User_Profile-->User:showProfile()
+deactivate User_Profile
+
+else HAVE A PROFILE
+User->User_Profile:checkProfile()
+activate User_Profile
+
+User_Profile-->User:showProfile()
+deactivate User_Profile
+
+end
+
+User->User_Profile:checkCertificate()
+
+activate User_Profile
+
+alt HAVE CERTIFICATE
+User_Profile->User_Profile:calcCertificateDiscount()
+User_Profile-->User:showProfile()
+
+else DON'T HAVE A CERTIFICATE
+User_Profile-->User:DON'T HAVE CERTIFICATE MESSAGE
+deactivate User_Profile
+end 
+
+User-->Main_Menu:exit()
+activate Main_Menu
+deactivate User
+
+
+
