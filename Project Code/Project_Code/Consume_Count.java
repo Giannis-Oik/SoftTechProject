@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Consume_Count
 {
-    private static int total_calories;
+    private int total_calories;
     
     public Consume_Count()
     {
@@ -15,21 +15,11 @@ public class Consume_Count
         Consume_Count count = new Consume_Count();
         
         System.out.println("Consumption counter has initiated. Below you can see the list of different foods and drinks.");
-        
-        for(int i = 0; i < FoodList.size(); i++)
-        {
-            System.out.println(FoodList.get(i));
-        }
-        
-        for(int i = 0; i < DrinksList.size(); i++)
-        {
-            System.out.println(DrinksList.get(i));
-        }
+     
+        showFoodAndDrinksList(FoodList, DrinksList);
         
         int cont = 0;
         int found = 0;
-        Food f;
-        Drink d;
         
         while(cont == 0)
         {
@@ -39,32 +29,7 @@ public class Consume_Count
         
             String item = input.nextLine();
             
-            for(int i = 0; i < FoodList.size(); i++)
-            {
-                f = FoodList.get(i);
-                
-                if(item == f.getName())
-                {
-                    found = 1;
-                    count.total_calories += f.getCalories();
-                    break;
-                }
-            }
-            
-            if(found == 0)
-            {
-                for(int i = 0; i < DrinksList.size(); i++)
-                {
-                    d = DrinksList.get(i);
-                
-                   if(item == d.getName())
-                   {
-                       found = 1;
-                       count.total_calories += d.getCalories();
-                       break;
-                   }
-                }
-            }
+            searchFoodAndDrinks(FoodList, DrinksList, found, item, count);
             
             if(found == 1)
             {
@@ -79,8 +44,67 @@ public class Consume_Count
             {
                 cont = 1;
                 System.out.println("You selected to proceed.");
-                System.out.println("Your total calories are: " + count.total_calories);
+                ShowTotal(count);
             }else{System.out.println("You will now be prompted to select another item.");}
         }
+        
+        return;
+    }
+    
+    static void showFoodAndDrinksList(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList)
+        {
+             for(int i = 0; i < FoodList.size(); i++)
+             {
+                 System.out.println(FoodList.get(i));
+             }
+        
+             for(int i = 0; i < DrinksList.size(); i++)
+             {
+                 System.out.println(DrinksList.get(i));
+             }
+             
+             return;
+        }
+        
+    static void searchFoodAndDrinks(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList, int found, String item, Consume_Count count)
+    {
+        Food f;
+        Drink d;
+        
+        for(int i = 0; i < FoodList.size(); i++)
+            {
+                f = FoodList.get(i);
+                
+                if(item == f.getName())
+                {
+                    found = 1;
+                    count.total_calories += f.getCalories();
+                    break;
+                }
+            }
+            
+        if(found == 0)
+            {
+                for(int i = 0; i < DrinksList.size(); i++)
+                {
+                    d = DrinksList.get(i);
+                
+                   if(item == d.getName())
+                   {
+                       found = 1;
+                       count.total_calories += d.getCalories();
+                       break;
+                   }
+                }
+            }
+            
+        return;
+    }
+    
+    static void ShowTotal(Consume_Count count)
+    {
+        System.out.println("Your total calories are: " + count.total_calories);
+        
+        return;
     }
 }

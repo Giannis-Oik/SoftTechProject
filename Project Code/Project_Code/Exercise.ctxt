@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Exercise
-comment1.params=name\ muscles\ var\ calories
-comment1.target=Exercise(java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
+comment1.params=name\ muscles\ var\ calories\ type
+comment1.target=Exercise(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getExerName()
 comment3.params=
@@ -10,4 +10,6 @@ comment4.params=
 comment4.target=java.lang.String\ getVariation()
 comment5.params=
 comment5.target=int\ getCalBurnt()
-numComments=6
+comment6.params=
+comment6.target=java.lang.String\ getType()
+numComments=7

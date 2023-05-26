@@ -35,15 +35,21 @@ public class Calorie_Counter
                BurntCalc(ExerciseList);
                break;
         }
+        
+        return;
     }
     
     static void ConsumptionCalc(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList)
     {
         Consume_Count.Count_Start(FoodList, DrinksList);
+        
+        return;
     }
     
     static void BurntCalc(ArrayList<Exercise> ExerciseList)
     {
         Burnt_Count.Count_Start(ExerciseList);
+        
+        return;
     }
 }

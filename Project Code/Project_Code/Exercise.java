@@ -1,14 +1,15 @@
 public class Exercise
 {
-    private String ExerciseName, MusclesAffected, Variation;
+    private String ExerciseName, MusclesAffected, Variation, MainType;
     private int AvgCaloriesBurnt;
     
-    public Exercise(String name, String muscles, String var, int calories)
+    public Exercise(String name, String muscles, String var, int calories, String type)
     {
         ExerciseName = name;
         MusclesAffected = muscles;
         Variation = var;
         AvgCaloriesBurnt = calories;
+        MainType = type;
     }
     
     public String getExerName()
@@ -29,5 +30,10 @@ public class Exercise
     public int getCalBurnt()
     {
         return AvgCaloriesBurnt;
+    }
+    
+    public String getType()
+    {
+        return MainType;
     }
 }
