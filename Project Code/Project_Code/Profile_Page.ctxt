@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Profile_Page
+comment1.params=scanner
+comment1.target=void\ showProfilePage(java.util.Scanner)
+comment2.params=
+comment2.target=void\ openList()
+numComments=3

@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Messages
+comment1.params=scanner
+comment1.target=void\ openMessages(java.util.Scanner)
+comment2.params=scanner
+comment2.target=void\ showMessages(java.util.Scanner)
+numComments=3
