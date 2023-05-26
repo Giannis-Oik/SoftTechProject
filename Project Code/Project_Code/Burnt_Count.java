@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Burnt_Count
 {
-    static private int total_calories;
+    private int total_calories;
     
     public Burnt_Count()
     {
@@ -16,13 +16,9 @@ public class Burnt_Count
         
         System.out.println("Burnt calories counter has initiated. Below you can see the list of different exercises to choose from.");
         
-        for(int i = 0; i < ExerciseList.size(); i++)
-        {
-            System.out.println(ExerciseList.get(i));
-        }
+        ShowExerciseList(ExerciseList);
         
         int proceed = 0, found = 0;
-        Exercise e;
         
         while(proceed == 0)
         {
@@ -32,17 +28,7 @@ public class Burnt_Count
         
             String item = input.nextLine();
             
-            for(int i = 0; i < ExerciseList.size(); i++)
-            {
-                e = ExerciseList.get(i);
-                
-                if(e.getExerName() == item)
-                {
-                    found = 1;
-                    count.total_calories += e.getCalBurnt();
-                    break;
-                }
-            }
+            SearchExercise(ExerciseList, count, item, found);
             
             if(found == 1)
             {
@@ -60,5 +46,43 @@ public class Burnt_Count
                 System.out.println("The total burnt calories of the selected exercises is: " + count.total_calories);
             }else{System.out.println("You will now be prompted to select another item.");}
         }
+        
+        return;
+    }
+    
+    static void ShowExerciseList(ArrayList<Exercise> ExerciseList)
+    {
+        for(int i = 0; i < ExerciseList.size(); i++)
+        {
+            System.out.println(ExerciseList.get(i));
+        }
+        
+        return;
+    }
+    
+    static void SearchExercise(ArrayList<Exercise> ExerciseList,Burnt_Count count, String item, int found)
+    {
+        Exercise e;
+        
+        for(int i = 0; i < ExerciseList.size(); i++)
+        {
+                e = ExerciseList.get(i);
+                
+                if(e.getExerName() == item)
+                {
+                    found = 1;
+                    count.total_calories += e.getCalBurnt();
+                    break;
+                }
+        }
+        
+        return;
+    }
+    
+    static void ShowTotal(Burnt_Count count)
+    {
+        System.out.println("The total burnt calories of the selected exercises is: " + count.total_calories);
+        
+        return;
     }
 }

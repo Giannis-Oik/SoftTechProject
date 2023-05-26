@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Plan
+comment1.params=u\ ExerciseList
+comment1.target=void\ New_Plan(User_profile,\ java.util.ArrayList)
+numComments=2
