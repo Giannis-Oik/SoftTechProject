@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=EShop
+comment1.params=
+comment1.target=void\ checkadmin()
+comment2.params=username\ password
+comment2.target=boolean\ isAdmin(java.lang.String,\ java.lang.String)
+comment3.params=scanner
+comment3.target=void\ editEshop(java.util.Scanner)
+comment4.params=scanner
+comment4.target=void\ confirmChanges(java.util.Scanner)
+numComments=5

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Products
+comment1.params=
+comment1.target=void\ checkStock()
+comment2.params=scanner
+comment2.target=void\ changeThings(java.util.Scanner)
+comment3.params=scanner
+comment3.target=void\ addProduct(java.util.Scanner)
+comment4.params=scanner
+comment4.target=void\ deleteProduct(java.util.Scanner)
+comment5.params=scanner
+comment5.target=void\ updateProduct(java.util.Scanner)
+comment6.params=scanner
+comment6.target=void\ openPricingPage(java.util.Scanner)
+comment7.params=scanner
+comment7.target=void\ makeChanges(java.util.Scanner)
+numComments=8

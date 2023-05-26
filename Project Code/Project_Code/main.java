@@ -46,10 +46,11 @@ public class main
                 break;
             case 7:
                 System.out.println("Eshop(admin only).");
-                EShopAdministration.checkadmin();
+                EShop.checkadmin();
                 break;
             case 8:
                 System.out.println("Forum.");
+                Forum.forum();
                 break;
         }
     }
