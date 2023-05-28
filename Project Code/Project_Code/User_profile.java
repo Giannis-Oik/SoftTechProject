@@ -8,6 +8,14 @@ public class User_profile
     private ArrayList<Exercise> ExThursday = new ArrayList<Exercise>();
     private ArrayList<Exercise> ExFriday = new ArrayList<Exercise>();
     private ArrayList<Exercise> ExSaturday = new ArrayList<Exercise>();
+    
+    private ArrayList<Meal> FoodMonday = new ArrayList<Meal>();
+    private ArrayList<Meal> FoodTuesday = new ArrayList<Meal>();
+    private ArrayList<Meal> FoodWednesday = new ArrayList<Meal>();
+    private ArrayList<Meal> FoodThursday = new ArrayList<Meal>();
+    private ArrayList<Meal> FoodFriday = new ArrayList<Meal>();
+    private ArrayList<Meal> FoodSaturday = new ArrayList<Meal>();
+    
 
     
     public User_profile()
@@ -20,6 +28,12 @@ public class User_profile
         {
             return false;
         }else {return true;}
+    }
+    
+    public void DeletePlan()
+    {
+        ExMonday.clear(); ExTuesday.clear(); ExWednesday.clear(); ExThursday.clear(); ExFriday.clear(); ExSaturday.clear();
+        FoodMonday.clear(); FoodTuesday.clear(); FoodWednesday.clear(); FoodThursday.clear(); FoodFriday.clear(); FoodSaturday.clear();
     }
     
     //Get and set methods:
@@ -98,6 +112,84 @@ public class User_profile
     {
         ExSaturday.clear();
         ExSaturday.addAll(list);
+        
+        return;
+    }
+    
+    public ArrayList getFoodMonday()
+    {
+        return FoodMonday;
+    }
+    
+    public void setFoodMonday(ArrayList<Meal> list)
+    {
+        FoodMonday.clear();
+        FoodMonday.addAll(list);
+        
+        return;
+    }
+    
+    public ArrayList getFoodTuesday()
+    {
+        return FoodTuesday;
+    }
+    
+    public void setFoodTuesday(ArrayList<Meal> list)
+    {
+        FoodTuesday.clear();
+        FoodTuesday.addAll(list);
+        
+        return;
+    }
+    
+    public ArrayList getFoodWednesday()
+    {
+        return FoodWednesday;
+    }
+    
+    public void setFoodWednesday(ArrayList<Meal> list)
+    {
+        FoodWednesday.clear();
+        FoodWednesday.addAll(list);
+        
+        return;
+    }
+    
+    public ArrayList getFoodThursday()
+    {
+        return FoodThursday;
+    }
+    
+    public void setFoodThursday(ArrayList<Meal> list)
+    {
+        FoodThursday.clear();
+        FoodThursday.addAll(list);
+        
+        return;
+    }
+    
+    public ArrayList getFoodFriday()
+    {
+        return FoodFriday;
+    }
+    
+    public void setFoodFriday(ArrayList<Meal> list)
+    {
+        FoodFriday.clear();
+        FoodFriday.addAll(list);
+        
+        return;
+    }
+    
+    public ArrayList getFoodSaturday()
+    {
+        return FoodSaturday;
+    }
+    
+    public void setFoodSaturday(ArrayList<Meal> list)
+    {
+        FoodSaturday.clear();
+        FoodSaturday.addAll(list);
         
         return;
     }

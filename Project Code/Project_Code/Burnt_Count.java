@@ -10,7 +10,7 @@ public class Burnt_Count
         total_calories = 0;
     }
     
-    static void Count_Start(ArrayList<Exercise> ExerciseList)
+    static void Count_Start(ArrayList<Exercise> ExerciseList) //Methodos poy ekkhnei thn metrhsh kayshs
     {
         Burnt_Count count = new Burnt_Count();
         
@@ -20,7 +20,7 @@ public class Burnt_Count
         
         int proceed = 0, found = 0;
         
-        while(proceed == 0)
+        while(proceed == 0) //Gia oso o xrhsths epilegei na vazei items sto synolo (An cont = 0 synexizei alliws me 1 bgazei to synolo kai epistrefei sthn calorie counter)
         {
             System.out.println("Please select one exercise to add its calories burnt per 60 minutes to the total count(By its name only).");
         
@@ -50,7 +50,7 @@ public class Burnt_Count
         return;
     }
     
-    static void ShowExerciseList(ArrayList<Exercise> ExerciseList)
+    static void ShowExerciseList(ArrayList<Exercise> ExerciseList) //Methodos poy emfanizei tis askhseis gia tis opoies yparxoyn katagegrammenes times
     {
         for(int i = 0; i < ExerciseList.size(); i++)
         {
@@ -60,15 +60,15 @@ public class Burnt_Count
         return;
     }
     
-    static void SearchExercise(ArrayList<Exercise> ExerciseList,Burnt_Count count, String item, int found)
+    static void SearchExercise(ArrayList<Exercise> ExerciseList,Burnt_Count count, String item, int found) //Methodos poy ektelei thn anazitish ths eisodoy sth lista askhsewn
     {
         Exercise e;
         
-        for(int i = 0; i < ExerciseList.size(); i++)
+        for(int i = 0; i < ExerciseList.size(); i++) 
         {
                 e = ExerciseList.get(i);
                 
-                if(e.getExerName() == item)
+                if(e.getExerName() == item) //An vrei thn eisodo th prosthetei sto synoliko arithmo thermidwn
                 {
                     found = 1;
                     count.total_calories += e.getCalBurnt();
@@ -79,7 +79,7 @@ public class Burnt_Count
         return;
     }
     
-    static void ShowTotal(Burnt_Count count)
+    static void ShowTotal(Burnt_Count count) //Methodos poy emfanizei to synolo kammenwn thermidwn
     {
         System.out.println("The total burnt calories of the selected exercises is: " + count.total_calories);
         
