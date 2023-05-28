@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Calorie_Counter
 {
-    static void CounterStartUp(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList, ArrayList<Exercise> ExerciseList)
+    static void CounterStartUp(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList, ArrayList<Exercise> ExerciseList) //Methodos ekkinhshs toy metrhth
     {
         System.out.println("You entered the calorie counter function.");
         System.out.println("Please select the configuration of your choice by its corresponding number:");
@@ -19,7 +19,7 @@ public class Calorie_Counter
             select = inp.nextInt();
         }
         
-        switch(select)
+        switch(select) //Vasei ths epiloghs toy xrhsth tha xrhsimopoihthoun kai oi dyo metrhtes h enas ek twn dyo
         {
             case 1:
                System.out.println("You selected to use both.");

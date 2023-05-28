@@ -34,7 +34,7 @@ public class Exercise_Plan
         return;
     }
     
-    private void Show_Options(int days, int type)
+    private void Show_Options(int days, int type) //Methodos poy deixnei tis epiloges sto xrhsth anaforika me to poses meres tha gymnazetai kai se th typo gymanstikhs endiaferetai.
     {
         System.out.println("The options are of two categories: 1)#of days to workout in a week, 2)type of workouts.");
         System.out.println("To begin you have to choose the #of days to workout.Your choice must be an integer number between 1 and 6.");
@@ -75,10 +75,10 @@ public class Exercise_Plan
         int cardio,chest,back,shoulders,legs,bic,tric,abs,flex,i;
         switch(type) //Switch poy xwrizei toys 3 typous gymnastikhs kai vash ths epiloghs dinei antistoixo programma.
         {
-            case(1): //Cardio(Weight Loss)
+            case 1: //Cardio(Weight Loss)
             switch(days) //Switch poy kathorizei tis meres gymnastikhs vash ths epiloghs
                 {
-                    case(1): //Mia mera ths vdomadas
+                    case 1: //Mia mera ths vdomadas
                          cardio = 4;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -91,7 +91,7 @@ public class Exercise_Plan
                              }
                          }
                          break;
-                    case(2): //Dyo meres ths vdomadas
+                    case 2: //Dyo meres ths vdomadas
                          cardio = 3; chest = 2; back = 2; legs = 1; 
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -118,7 +118,7 @@ public class Exercise_Plan
                              }
                          }
                          break;
-                    case(3): //Treis meres ths vdomadas
+                    case 3: //Treis meres ths vdomadas
                          cardio = 3; chest = 2; back = 2; legs = 2; bic = 1; tric = 1; abs = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -157,7 +157,7 @@ public class Exercise_Plan
                              }
                          }
                          break;
-                    case(4): //Tesseris meres ths vdomadas
+                    case 4: //Tesseris meres ths vdomadas
                          cardio = 3; chest = 2; back = 2; legs = 2; shoulders = 2; bic = 1; tric = 1; abs = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -202,7 +202,7 @@ public class Exercise_Plan
                              }
                          }
                          break;
-                    case(5): //Pente meres ths vdomadas
+                    case 5: //Pente meres ths vdomadas
                          cardio = 6; chest = 2; back = 2; legs = 2; shoulders = 2; bic = 1; tric = 1; abs = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -251,7 +251,7 @@ public class Exercise_Plan
                              }
                          }
                          break;
-                    case(6): //Exi meres ths vdomadas
+                    case 6: //Exi meres ths vdomadas
                          cardio = 6; chest = 2; back = 2; legs = 2; shoulders = 2; bic = 1; tric = 1; abs = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -303,10 +303,10 @@ public class Exercise_Plan
                          break;
                 }
                 break;
-            case(2): //Strength(Weight Training)
+            case 2: //Strength(Weight Training)
                 switch(days) //Switch poy kathorizei tis meres gymnastikhs vash ths epiloghs
                 {
-                    case(1): //Mia mera ths vdomadas
+                    case 1: //Mia mera ths vdomadas
                          chest = 2; back = 2; shoulders = 2; legs = 2; bic = 1; tric = 1; abs = 1; cardio = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {   
@@ -347,7 +347,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(2): //Dyo meres ths vdomadas
+                    case 2: //Dyo meres ths vdomadas
                          chest = 3; back = 3; shoulders = 3; legs = 3; bic = 1; tric = 1; abs = 1; cardio = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -392,7 +392,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(3): //Treis meres ths vdomadas
+                    case 3: //Treis meres ths vdomadas
                          chest = 3; back = 3; shoulders = 3; legs = 3; bic = 2; tric = 2; abs = 2; cardio = 2;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -435,7 +435,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(4): //Tesseris meres ths vdomadas
+                    case 4: //Tesseris meres ths vdomadas
                          chest = 3; back = 3; shoulders = 3; legs = 3; bic = 2; tric = 2; abs = 1; cardio = 2;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -482,7 +482,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(5): //Pente meres ths vdomadas
+                    case 5: //Pente meres ths vdomadas
                          chest = 3; back = 3; shoulders = 3; legs = 3; bic = 3; tric = 3; abs = 3; cardio = 2;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -530,7 +530,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(6): //Exi meres ths vdomadas
+                    case 6: //Exi meres ths vdomadas
                          chest = 3; back = 3; shoulders = 3; legs = 3; bic = 2; tric = 2; abs = 2; cardio = 1;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -592,10 +592,10 @@ public class Exercise_Plan
                          break;
                 }
                 break;
-            case(3): //Flexibility
+            case 3: //Flexibility
                 switch(days) //Switch poy kathorizei tis meres gymnastikhs vash ths epiloghs
                 {
-                    case(1): //Mia mera ths vdomadas
+                    case 1: //Mia mera ths vdomadas
                          flex = 6;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -608,7 +608,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(2): //Dyo meres ths vdomadas
+                    case 2: //Dyo meres ths vdomadas
                          flex = 6;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -622,7 +622,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(3): //Treis meres ths vdomadas
+                    case 3: //Treis meres ths vdomadas
                          flex = 6;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -648,7 +648,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(4): //Tesseris meres ths vdomadas
+                    case 4: //Tesseris meres ths vdomadas
                          flex = 6;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -675,7 +675,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(5): //Pente meres ths vdomadas
+                    case 5: //Pente meres ths vdomadas
                          flex = 6;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -714,7 +714,7 @@ public class Exercise_Plan
                             }
                          }
                          break;
-                    case(6): //Exi meres ths vdomadas
+                    case 6: //Exi meres ths vdomadas
                          flex = 6;
                          for(i=0; i < ExerciseList.size(); i++)
                          {
@@ -761,24 +761,24 @@ public class Exercise_Plan
         return;
     }
     
-    private void Show_Plan(int type)
+    private void Show_Plan(int type) //Methodos poy emfanizei to programma kai to tropo ekteleshs toy vasei toy typoy gymnastikhs poy exei epilexei o xrhsths.
     {
         int i;
         Exercise e;
         System.out.println("First of all some general information for the excution part of your plan: ");
         switch(type)
         {
-            case(1):
+            case 1:
                 System.out.println("Since you selected for the Weight loss plan you must do for each exercise 3 sets of 20 repetitions.");
                 System.out.println("Also for cardio exercises that do not have a distance goal you have to do at least 20 minutes for each.");
                 System.out.println("Finally you must have breaks between each set and exercise that feel comfortable to you(Usually more than 1 minute but not more than 2 or 3).");
                 break;
-            case(2):
+            case 2:
                 System.out.println("Since you selected for the Strength plan you must do for each exercise 4 sets of 10 repetitions.");
                 System.out.println("Also for cardio exercises that do not have a distance goal you have to do at least 10 minutes for each.");
                 System.out.println("Finally you must have breaks between each set and exercise of around 45 secs to 1 minute.");
                 break;
-            case(3):
+            case 3:
                 System.out.println("Since you selected for the Flexibility plan you must exercise for 60 to 90 minutes each day breaking down time evenly to each exercise.");
                 System.out.println("Finally you must have breaks between each exercise of around 2 minutes.");
                 break;
@@ -884,7 +884,7 @@ public class Exercise_Plan
         return;
     }
     
-    private void Make_changes()
+    private void Make_changes() //methodos poy allazei dyo meres vasei epiloghs xrhsth.
     {
         System.out.println("Do you want to make any changes to the plan that was made?(Answer with 'y' for to make a change or 'n' to not)");
         
@@ -904,7 +904,7 @@ public class Exercise_Plan
             
             choice = input.nextLine();
             
-            switch(choice)
+            switch(choice) //Switch poy vriskei tis dyo meres poy epelexe o xrhsths kai enallasei ta stoixeia toys.
             {
                 case "monday":
                           ArrayList<Exercise> temp1 = new ArrayList<Exercise>(Monday);
@@ -1146,7 +1146,7 @@ public class Exercise_Plan
         return;
     }
     
-    private void Save_plan(User_profile u)
+    private void Save_plan(User_profile u) //Methodos poy apothkeyei to programma sto profile toy xrhsth
     {
         u.setExMonday(Monday);
         u.setExTuesday(Tuesday);
