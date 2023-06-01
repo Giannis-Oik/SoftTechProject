@@ -8,10 +8,11 @@ public class Meal
     private String type;
     private int calories_total;
     
-    public Meal(String n, Food f, Drink d, String t)
+    public Meal(String n, Food f,Food f2, Drink d, String t)
     {
         name = n;
         food = f;
+        secondary = f2;
         drink = d;
         type = t;
         calories_total = f.getCalories() + d.getCalories();
@@ -28,13 +29,13 @@ public class Meal
         calories_total = f.getCalories() + secondary.getCalories() + third.getCalories() + d.getCalories();
     }
     
-    public Meal(String n, Food f,Food sec)
+    public Meal(String n, Food f,Drink d)
     {
         name = n;
         food = f;
-        secondary = sec;
+        drink = d;
         type = "Evening meal";
-        calories_total = f.getCalories() + secondary.getCalories();
+        calories_total = f.getCalories() + d.getCalories();
     }
     
     public int getCalories()

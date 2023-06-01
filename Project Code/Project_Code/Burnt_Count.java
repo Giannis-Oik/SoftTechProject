@@ -18,19 +18,20 @@ public class Burnt_Count
         
         ShowExerciseList(ExerciseList);
         
-        int proceed = 0, found = 0;
+        int proceed = 0;
+        boolean found = false;
         
         while(proceed == 0) //Gia oso o xrhsths epilegei na vazei items sto synolo (An cont = 0 synexizei alliws me 1 bgazei to synolo kai epistrefei sthn calorie counter)
         {
-            System.out.println("Please select one exercise to add its calories burnt per 60 minutes to the total count(By its name only).");
+            System.out.println("Please select one exercise to add its calories burnt per set to the total count(By its name only).");
         
             Scanner input = new Scanner(System.in);
         
             String item = input.nextLine();
             
-            SearchExercise(ExerciseList, count, item, found);
+            found = SearchExercise(ExerciseList, count, item);
             
-            if(found == 1)
+            if(found)
             {
                 System.out.println("Your selection was found and its calories were added to the total.");
             }else{System.out.println("Your selection was not found.");}
@@ -39,7 +40,7 @@ public class Burnt_Count
             
             item = input.nextLine();
             
-            if(item != "n" && item != "N" && item != "NO" && item != "no") 
+            if((item.equalsIgnoreCase("no")) || (item.equalsIgnoreCase("n")))
             {
                 proceed = 1;
                 System.out.println("You selected to proceed.");
@@ -54,29 +55,30 @@ public class Burnt_Count
     {
         for(int i = 0; i < ExerciseList.size(); i++)
         {
-            System.out.println(ExerciseList.get(i));
+            Exercise e = ExerciseList.get(i);
+            
+            System.out.println(e.getExerName());
         }
         
         return;
     }
     
-    static void SearchExercise(ArrayList<Exercise> ExerciseList,Burnt_Count count, String item, int found) //Methodos poy ektelei thn anazitish ths eisodoy sth lista askhsewn
+    static boolean SearchExercise(ArrayList<Exercise> ExerciseList,Burnt_Count count, String item) //Methodos poy ektelei thn anazitish ths eisodoy sth lista askhsewn
     {
         Exercise e;
         
         for(int i = 0; i < ExerciseList.size(); i++) 
         {
-                e = ExerciseList.get(i);
+            e = ExerciseList.get(i);
                 
-                if(e.getExerName() == item) //An vrei thn eisodo th prosthetei sto synoliko arithmo thermidwn
-                {
-                    found = 1;
-                    count.total_calories += e.getCalBurnt();
-                    break;
-                }
+            if(item.equalsIgnoreCase(e.getExerName())) //An vrei thn eisodo th prosthetei sto synoliko arithmo thermidwn
+            {
+                count.total_calories += e.getCalBurnt();
+                return true;
+            }
         }
         
-        return;
+        return false;
     }
     
     static void ShowTotal(Burnt_Count count) //Methodos poy emfanizei to synolo kammenwn thermidwn
