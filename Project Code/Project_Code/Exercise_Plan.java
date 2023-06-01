@@ -17,25 +17,37 @@ public class Exercise_Plan
     {
         Exercise_Plan plan = new Exercise_Plan();
         
-        int days = 0, type = 0;
+        System.out.println("The construction of your exercise plan has began.You will now be presented with the available options.");
         
-        System.out.println("The cconstruction of your exercise plan has began.You will now be presented with the available options.");
+        int[] choices = new int[2];
+        boolean changes;
         
-        plan.Show_Options(days, type);
+        choices = plan.Show_Options();
         
-        plan.Make_Plan(days,type,ExerciseList);
+        System.out.println("");
+        plan.Make_Plan(choices[0],choices[1],ExerciseList);
         
-        plan.Show_Plan(type);
+        System.out.println("");
+        plan.Show_Plan(choices[1]);
         
-        plan.Make_changes();
+        System.out.println("");
+        changes = plan.Make_changes();
         
+        if(changes)
+        {
+            System.out.println("Your changed plan is: ");
+            plan.Show_Plan(choices[1]);
+        }
+        
+        System.out.println("");
         plan.Save_plan(u);
         
         return;
     }
     
-    private void Show_Options(int days, int type) //Methodos poy deixnei tis epiloges sto xrhsth anaforika me to poses meres tha gymnazetai kai se th typo gymanstikhs endiaferetai.
+    private int[] Show_Options() //Methodos poy deixnei tis epiloges sto xrhsth anaforika me to poses meres tha gymnazetai kai se th typo gymanstikhs endiaferetai.
     {
+        int[] outp = new int[2];
         System.out.println("The options are of two categories: 1)#of days to workout in a week, 2)type of workouts.");
         System.out.println("To begin you have to choose the #of days to workout.Your choice must be an integer number between 1 and 6.");
         
@@ -47,25 +59,27 @@ public class Exercise_Plan
         {
             System.out.println("Your choice was invalid. Please make another one using a number from 1 to 6.");
             choice = input.nextInt();
+            System.out.println("");
         }
         
-        days = choice;
+        outp[0] = choice;
        
         System.out.println("Now you have to choose the type of workout you wish for.The available choices are:\n1)Weight Loss(More cardio)\n2)Strength(Weight training)\n3)Flexibility");
         
-        System.out.println("Please make your choice using the corresponding number(1 to 4).");
+        System.out.println("Please make your choice using the corresponding number(1 to 3).");
         
         choice = input.nextInt();
         
         while(choice > 3 || choice < 1)
         {
-            System.out.println("Your choice was invalid. Please make another one using a number from 1 to 4.");
+            System.out.println("Your choice was invalid. Please make another one using a number from 1 to 3.");
             choice = input.nextInt();
+            System.out.println("");
         }
         
-        type = choice;
+        outp[1] = choice;
         
-        return;
+        return outp;
     }
     
     private void Make_Plan(int days, int type, ArrayList<Exercise> ExerciseList)
@@ -73,6 +87,7 @@ public class Exercise_Plan
         Collections.shuffle(ExerciseList);
         Exercise e;
         int cardio,chest,back,shoulders,legs,bic,tric,abs,flex,i;
+        
         switch(type) //Switch poy xwrizei toys 3 typous gymnastikhs kai vash ths epiloghs dinei antistoixo programma.
         {
             case 1: //Cardio(Weight Loss)
@@ -83,8 +98,7 @@ public class Exercise_Plan
                          for(i=0; i < ExerciseList.size(); i++)
                          {
                              e = ExerciseList.get(i);
-                             
-                             if((e.getType() == "Low Cardio") || (e.getType() == "Medium Cardio") || (e.getType() == "High Cardio") && cardio > 0)
+                             if(((e.getType()).equals("Low Cardio")) || ((e.getType()).equals("Medium Cardio")) || ((e.getType()).equals("High Cardio")) && cardio > 0)
                              {
                                  Wednesday.add(e);
                                  cardio--;
@@ -97,20 +111,20 @@ public class Exercise_Plan
                          {
                              e = ExerciseList.get(i);
                              
-                             if((e.getType() == "Low Cardio") || (e.getType() == "Medium Cardio") || (e.getType() == "High Cardio") && (cardio > 0))
+                             if(((e.getType()).equals("Low Cardio")) || ((e.getType()).equals("Medium Cardio")) || ((e.getType()).equals("High Cardio")) && cardio > 0)
                              {
                                  Tuesday.add(e);
                                  Thursday.add(e);
                                  cardio--;
-                             }else if((e.getMuscles() == "Chest")&& (chest > 0))
+                             }else if(((e.getMuscles()).equals("Chest"))&& (chest > 0))
                              {
                                  Tuesday.add(e);
                                  chest--;
-                             }else if((e.getMuscles() == "Back")&& (back > 0))
+                             }else if(((e.getMuscles()).equals("Back"))&& (back > 0))
                              {
                                  Thursday.add(e);
                                  back--;
-                             }else if((e.getMuscles() == "Legs")&& (legs > 0))
+                             }else if(((e.getMuscles()).equals("Legs"))&& (legs > 0))
                              {
                                  Tuesday.add(e);
                                  Thursday.add(e);
@@ -124,33 +138,33 @@ public class Exercise_Plan
                          {
                              e = ExerciseList.get(i);
                              
-                             if((e.getType() == "Low Cardio") || (e.getType() == "Medium Cardio") || (e.getType() == "High Cardio") && (cardio > 0))
+                             if(((e.getType()).equals("Low Cardio")) || ((e.getType()).equals("Medium Cardio")) || ((e.getType()).equals("High Cardio")) && cardio > 0)
                              {
                                  Monday.add(e);
                                  Wednesday.add(e);
                                  Friday.add(e);
                                  cardio--;
-                             }else if((e.getMuscles() == "Chest")&& (chest > 0))
+                             }else if(((e.getMuscles()).equals("Chest"))&& (chest > 0))
                              {
                                  Monday.add(e);
                                  chest--;
-                             }else if((e.getMuscles() == "Back")&& (back > 0))
+                             }else if(((e.getMuscles()).equals("Back"))&& (back > 0))
                              {
                                  Wednesday.add(e);
                                  back--;
-                             }else if((e.getMuscles() == "Legs")&& (legs > 0))
+                             }else if(((e.getMuscles()).equals("Legs"))&& (legs > 0))
                              {
                                  Friday.add(e);
                                  legs--;
-                             }else if((e.getMuscles() == "Biceps")&& (bic > 0))
+                             }else if(((e.getMuscles()).equals("Biceps"))&& (bic > 0))
                              {
                                  Monday.add(e);
                                  bic--;
-                             }else if((e.getMuscles() == "Triceps")&& (tric > 0))
+                             }else if(((e.getMuscles()).equals("Triceps"))&& (tric > 0))
                              {
                                  Wednesday.add(e);
                                  tric--;
-                             }else if((e.getMuscles() == "Abs")&& (abs > 0))
+                             }else if(((e.getMuscles()).equals("Abs"))&& (abs > 0))
                              {
                                  Friday.add(e);
                                  abs--;
@@ -163,38 +177,38 @@ public class Exercise_Plan
                          {
                              e = ExerciseList.get(i);
                              
-                             if((e.getType() == "Low Cardio") || (e.getType() == "Medium Cardio") || (e.getType() == "High Cardio") && (cardio > 0))
+                             if(((e.getType()).equals("Low Cardio")) || ((e.getType()).equals("Medium Cardio")) || ((e.getType()).equals("High Cardio")) && cardio > 0)
                              {
                                  Monday.add(e);
                                  Tuesday.add(e);
                                  Thursday.add(e);
                                  Friday.add(e);
                                  cardio--;
-                             }else if((e.getMuscles() == "Chest")&& (chest > 0))
+                             }else if(((e.getMuscles()).equals("Chest"))&& (chest > 0))
                              {
                                  Monday.add(e);
                                  chest--;
-                             }else if((e.getMuscles() == "Back")&& (back > 0))
+                             }else if(((e.getMuscles()).equals("Back"))&& (back > 0))
                              {
                                  Tuesday.add(e);
                                  back--;
-                             }else if((e.getMuscles() == "Shoulders")&& (shoulders > 0))
+                             }else if(((e.getMuscles()).equals("Shoulders"))&& (shoulders > 0))
                              {
                                  Thursday.add(e);
                                  shoulders--;
-                             }else if((e.getMuscles() == "Legs")&& (legs > 0))
+                             }else if(((e.getMuscles()).equals("Legs"))&& (legs > 0))
                              {
                                  Friday.add(e);
                                  legs--;
-                             }else if((e.getMuscles() == "Biceps")&& (bic > 0))
+                             }else if(((e.getMuscles()).equals("Biceps"))&& (bic > 0))
                              {
                                  Tuesday.add(e);
                                  bic--;
-                             }else if((e.getMuscles() == "Triceps")&& (tric > 0))
+                             }else if(((e.getMuscles()).equals("Triceps"))&& (tric > 0))
                              {
                                  Thursday.add(e);
                                  tric--;
-                             }else if((e.getMuscles() == "Abs")&& (abs > 0))
+                             }else if(((e.getMuscles()).equals("Abs"))&& (abs > 0))
                              {
                                  Monday.add(e);
                                  Friday.add(e);
@@ -208,42 +222,42 @@ public class Exercise_Plan
                          {
                              e = ExerciseList.get(i);
                              
-                             if((e.getType() == "Low Cardio") || (e.getType() == "Medium Cardio") && (cardio > 3))
+                             if(((e.getType()).equals("Low Cardio")) || ((e.getType()).equals("Medium Cardio")) && (cardio > 3))
                              {
                                  Monday.add(e);
                                  Tuesday.add(e);
                                  Thursday.add(e);
                                  Friday.add(e);
                                  cardio--;
-                             }else if((e.getType() == "High Cardio") && (cardio > 0))
+                             }else if(((e.getType()).equals("High Cardio")) && (cardio > 0))
                              {
                                  Saturday.add(e);
                                  cardio--;
-                             }else if((e.getMuscles() == "Chest")&& (chest > 0))
+                             }else if(((e.getMuscles()).equals("Chest"))&& (chest > 0))
                              {
                                  Monday.add(e);
                                  chest--;
-                             }else if((e.getMuscles() == "Back")&& (back > 0))
+                             }else if(((e.getMuscles()).equals("Back"))&& (back > 0))
                              {
                                  Tuesday.add(e);
                                  back--;
-                             }else if((e.getMuscles() == "Shoulders")&& (shoulders > 0))
+                             }else if(((e.getMuscles()).equals("Shoulders"))&& (shoulders > 0))
                              {
                                  Thursday.add(e);
                                  shoulders--;
-                             }else if((e.getMuscles() == "Legs")&& (legs > 0))
+                             }else if(((e.getMuscles()).equals("Legs"))&& (legs > 0))
                              {
                                  Friday.add(e);
                                  legs--;
-                             }else if((e.getMuscles() == "Biceps")&& (bic > 0))
+                             }else if(((e.getMuscles()).equals("Biceps"))&& (bic > 0))
                              {
                                  Tuesday.add(e);
                                  bic--;
-                             }else if((e.getMuscles() == "Triceps")&& (tric > 0))
+                             }else if(((e.getMuscles()).equals("Triceps"))&& (tric > 0))
                              {
                                  Thursday.add(e);
                                  tric--;
-                             }else if((e.getMuscles() == "Abs")&& (abs > 0))
+                             }else if(((e.getMuscles()).equals("Abs"))&& (abs > 0))
                              {
                                  Monday.add(e);
                                  Friday.add(e);
@@ -257,43 +271,43 @@ public class Exercise_Plan
                          {
                              e = ExerciseList.get(i);
                              
-                             if((e.getType() == "Low Cardio") || (e.getType() == "Medium Cardio") && (cardio > 3))
+                             if(((e.getType()).equals("Low Cardio")) || ((e.getType()).equals("Medium Cardio")) && (cardio > 3))
                              {
                                  Monday.add(e);
                                  Tuesday.add(e);
                                  Thursday.add(e);
                                  Friday.add(e);
                                  cardio--;
-                             }else if((e.getType() == "High Cardio") && (cardio > 0))
+                             }else if(((e.getType()).equals("High Cardio")) && (cardio > 0))
                              {
                                  Wednesday.add(e);
                                  Saturday.add(e);
                                  cardio--;
-                             }else if((e.getMuscles() == "Chest")&& (chest > 0))
+                             }else if(((e.getMuscles()).equals("Chest"))&& (chest > 0))
                              {
                                  Monday.add(e);
                                  chest--;
-                             }else if((e.getMuscles() == "Back")&& (back > 0))
+                             }else if(((e.getMuscles()).equals("Back"))&& (back > 0))
                              {
                                  Tuesday.add(e);
                                  back--;
-                             }else if((e.getMuscles() == "Shoulders")&& (shoulders > 0))
+                             }else if(((e.getMuscles()).equals("Shoulders"))&& (shoulders > 0))
                              {
                                  Thursday.add(e);
                                  shoulders--;
-                             }else if((e.getMuscles() == "Legs")&& (legs > 0))
+                             }else if(((e.getMuscles()).equals("Legs"))&& (legs > 0))
                              {
                                  Friday.add(e);
                                  legs--;
-                             }else if((e.getMuscles() == "Biceps")&& (bic > 0))
+                             }else if(((e.getMuscles()).equals("Biceps"))&& (bic > 0))
                              {
                                  Tuesday.add(e);
                                  bic--;
-                             }else if((e.getMuscles() == "Triceps")&& (tric > 0))
+                             }else if(((e.getMuscles()).equals("Triceps"))&& (tric > 0))
                              {
                                  Thursday.add(e);
                                  tric--;
-                             }else if((e.getMuscles() == "Abs")&& (abs > 0))
+                             }else if(((e.getMuscles()).equals("Abs"))&& (abs > 0))
                              {
                                  Monday.add(e);
                                  Friday.add(e);
@@ -312,35 +326,35 @@ public class Exercise_Plan
                          {   
                             e = ExerciseList.get(i);
                     
-                            if((e.getMuscles() == "Chest") && (chest > 0))
+                            if(((e.getMuscles()).equals("Chest")) && (chest > 0))
                             {
                                 Wednesday.add(e);
                                 chest--;
-                            }else if((e.getMuscles() == "Back") && (back > 0))
+                            }else if(((e.getMuscles()).equals("Back")) && (back > 0))
                             {
                                 Wednesday.add(e);
                                 back--;
-                            }else if((e.getMuscles() == "Shoulders") && (shoulders > 0))
+                            }else if(((e.getMuscles()).equals("Shoulders")) && (shoulders > 0))
                             {
                                 Wednesday.add(e);
                                 shoulders--;
-                            }else if((e.getMuscles() == "Legs") && (legs > 0))
+                            }else if(((e.getMuscles()).equals("Legs")) && (legs > 0))
                             {   
                                 Wednesday.add(e);
                                 legs--;
-                            }else if((e.getMuscles() == "Biceps") && (bic > 0))
+                            }else if(((e.getMuscles()).equals("Biceps")) && (bic > 0))
                             {
                                 Wednesday.add(e);
                                 bic--;
-                            }else if((e.getMuscles() == "Triceps") && (tric > 0))
+                            }else if(((e.getMuscles()).equals("Triceps")) && (tric > 0))
                             {
                                 Wednesday.add(e);
                                 tric--;
-                            }else if((e.getMuscles() == "Abs") && (abs > 0))
+                            }else if(((e.getMuscles()).equals("Abs")) && (abs > 0))
                             {
                                 Wednesday.add(e);
                                 abs--;
-                            }else if((e.getMuscles() == "All") && (cardio > 0))
+                            }else if(((e.getMuscles()).equals("All")) && (cardio > 0))
                             {
                                 Wednesday.add(e);
                                 cardio--;
@@ -353,38 +367,38 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                     
-                            if((e.getMuscles() == "Chest") && (chest > 0))
+                            if(((e.getMuscles()).equals("Chest")) && (chest > 0))
                             {
                                 Tuesday.add(e);
                                 chest--;
-                            }else if((e.getMuscles() == "Back") && (back > 0))
+                            }else if(((e.getMuscles()).equals("Back")) && (back > 0))
                             {
                                 Tuesday.add(e);
                                 back--;
-                            }else if((e.getMuscles() == "Shoulders") && (shoulders > 0))
+                            }else if(((e.getMuscles()).equals("Shoulders")) && (shoulders > 0))
                             {
                                 Thursday.add(e);
                                 shoulders--;
-                            }else if((e.getMuscles() == "Legs") && (legs > 0))
+                            }else if(((e.getMuscles()).equals("Legs")) && (legs > 0))
                             {
                                 Thursday.add(e);
                                 legs--;
-                            }else if((e.getMuscles() == "Biceps") && (bic > 0))
+                            }else if(((e.getMuscles()).equals("Biceps")) && (bic > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
                                 bic--;
-                            }else if((e.getMuscles() == "Triceps") && (tric > 0))
+                            }else if(((e.getMuscles()).equals("Triceps")) && (tric > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
                                 tric--;
-                            }else if((e.getMuscles() == "Abs") && (abs > 0))
+                            }else if(((e.getMuscles()).equals("Abs")) && (abs > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
                                 abs--;
-                            }else if((e.getMuscles() == "All") && (cardio > 0))
+                            }else if(((e.getMuscles()).equals("All")) && (cardio > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
@@ -398,35 +412,35 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                     
-                            if((e.getMuscles() == "Chest") && (chest > 0))
+                            if(((e.getMuscles()).equals("Chest")) && (chest > 0))
                             {
                                 Monday.add(e);
                                 chest--;
-                            }else if((e.getMuscles() == "Back") && (back > 0))
+                            }else if(((e.getMuscles()).equals("Back")) && (back > 0))
                             {
                                 Monday.add(e);
                                 back--;
-                            }else if((e.getMuscles() == "Shoulders") && (shoulders > 0))
+                            }else if(((e.getMuscles()).equals("Shoulders")) && (shoulders > 0))
                             {
                                 Wednesday.add(e);
                                 shoulders--;
-                            }else if((e.getMuscles() == "Legs") && (legs > 0))
+                            }else if(((e.getMuscles()).equals("Legs")) && (legs > 0))
                             {
                                 Wednesday.add(e);
                                 legs--;
-                            }else if((e.getMuscles() == "Biceps") && (bic > 0))
+                            }else if(((e.getMuscles()).equals("Biceps")) && (bic > 0))
                             {
                                 Friday.add(e);
                                 bic--;
-                            }else if((e.getMuscles() == "Triceps") && (tric > 0))
+                            }else if(((e.getMuscles()).equals("Triceps")) && (tric > 0))
                             {
                                 Friday.add(e);
                                 tric--;
-                            }else if((e.getMuscles() == "Abs") && (abs > 0))
+                            }else if(((e.getMuscles()).equals("Abs")) && (abs > 0))
                             {
                                 Friday.add(e);
                                 abs--;
-                            }else if((e.getMuscles() == "All") && (cardio > 0))
+                            }else if(((e.getMuscles()).equals("All")) && (cardio > 0))
                             {
                                 Monday.add(e);
                                 Wednesday.add(e);
@@ -441,38 +455,38 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                     
-                            if((e.getMuscles() == "Chest") && (chest > 0))
+                            if(((e.getMuscles()).equals("Chest")) && (chest > 0))
                             {
                                 Monday.add(e);
                                 Thursday.add(e);
                                 chest--;
-                            }else if((e.getMuscles() == "Back") && (back > 0))
+                            }else if(((e.getMuscles()).equals("Back")) && (back > 0))
                             {
                                 Monday.add(e);
                                 Friday.add(e);
                                 back--;
-                            }else if((e.getMuscles() == "Shoulders") && (shoulders > 0))
+                            }else if(((e.getMuscles()).equals("Shoulders")) && (shoulders > 0))
                             {
                                 Tuesday.add(e);
                                 shoulders--;
-                            }else if((e.getMuscles() == "Legs") && (legs > 0))
+                            }else if(((e.getMuscles()).equals("Legs")) && (legs > 0))
                             {
                                 Tuesday.add(e);
                                 legs--;
-                            }else if((e.getMuscles() == "Biceps") && (bic > 0))
+                            }else if(((e.getMuscles()).equals("Biceps")) && (bic > 0))
                             {
                                 Thursday.add(e);
                                 bic--;
-                            }else if((e.getMuscles() == "Triceps") && (tric > 0))
+                            }else if(((e.getMuscles()).equals("Triceps")) && (tric > 0))
                             {
                                 Friday.add(e);
                                 tric--;
-                            }else if((e.getMuscles() == "Abs") && (abs > 0))
+                            }else if(((e.getMuscles()).equals("Abs")) && (abs > 0))
                             {
                                 Thursday.add(e);
                                 Friday.add(e);
                                 abs--;
-                            }else if((e.getMuscles() == "All") && (cardio > 0))
+                            }else if(((e.getMuscles()).equals("All")) && (cardio > 0))
                             {
                                 Monday.add(e);
                                 Tuesday.add(e);
@@ -488,39 +502,39 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                     
-                            if((e.getMuscles() == "Chest") && (chest > 0))
+                            if(((e.getMuscles()).equals("Chest")) && (chest > 0))
                             {
                                 Monday.add(e);
                                 Thursday.add(e);
                                 chest--;
-                            }else if((e.getMuscles() == "Back") && (back > 0))
+                            }else if(((e.getMuscles()).equals("Back")) && (back > 0))
                             {
                                 Monday.add(e);
                                 Friday.add(e);
                                 back--;
-                            }else if((e.getMuscles() == "Shoulders") && (shoulders > 0))
+                            }else if(((e.getMuscles()).equals("Shoulders")) && (shoulders > 0))
                             {
                                 Tuesday.add(e);
                                 Saturday.add(e);
                                 shoulders--;
-                            }else if((e.getMuscles() == "Legs") && (legs > 0))
+                            }else if(((e.getMuscles()).equals("Legs")) && (legs > 0))
                             {
                                 Tuesday.add(e);
                                 Saturday.add(e);
                                 legs--;
-                            }else if((e.getMuscles() == "Biceps") && (bic > 0))
+                            }else if(((e.getMuscles()).equals("Biceps")) && (bic > 0))
                             {
                                 Thursday.add(e);
                                 bic--;
-                            }else if((e.getMuscles() == "Triceps") && (tric > 0))
+                            }else if(((e.getMuscles()).equals("Triceps")) && (tric > 0))
                             {
                                 Friday.add(e);
                                 tric--;
-                            }else if((e.getMuscles() == "Abs") && (abs > 0))
+                            }else if(((e.getMuscles()).equals("Abs")) && (abs > 0))
                             {
                                 Saturday.add(e);
                                 abs--;
-                            }else if((e.getMuscles() == "All") && (cardio > 0))
+                            }else if(((e.getMuscles()).equals("All")) && (cardio > 0))
                             {
                                 Monday.add(e);
                                 Tuesday.add(e);
@@ -536,7 +550,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                     
-                            if((e.getMuscles() == "Chest") && (chest > 0))
+                            if(((e.getMuscles()).equals("Chest")) && (chest > 0))
                             {
                                 Monday.add(e);
                                 if(chest > 1)
@@ -544,7 +558,7 @@ public class Exercise_Plan
                                     Saturday.add(e);
                                 }
                                 chest--;
-                            }else if((e.getMuscles() == "Back") && (back > 0))
+                            }else if(((e.getMuscles()).equals("Back")) && (back > 0))
                             {
                                 Tuesday.add(e);
                                 if(back > 1)
@@ -552,7 +566,7 @@ public class Exercise_Plan
                                     Saturday.add(e);
                                 }
                                 back--;
-                            }else if((e.getMuscles() == "Shoulders") && (shoulders > 0))
+                            }else if(((e.getMuscles()).equals("Shoulders")) && (shoulders > 0))
                             {
                                 Wednesday.add(e);
                                 if(shoulders > 1)
@@ -560,7 +574,7 @@ public class Exercise_Plan
                                     Saturday.add(e);
                                 }
                                 shoulders--;
-                            }else if((e.getMuscles() == "Legs") && (legs > 0))
+                            }else if(((e.getMuscles()).equals("Legs")) && (legs > 0))
                             {
                                 Thursday.add(e);
                                 if(legs > 1)
@@ -568,22 +582,22 @@ public class Exercise_Plan
                                     Saturday.add(e);
                                 }
                                 legs--;
-                            }else if((e.getMuscles() == "Biceps") && (bic > 0))
+                            }else if(((e.getMuscles()).equals("Biceps")) && (bic > 0))
                             {
                                 Monday.add(e);
                                 Thursday.add(e);
                                 bic--;
-                            }else if((e.getMuscles() == "Triceps") && (tric > 0))
+                            }else if(((e.getMuscles()).equals("Triceps")) && (tric > 0))
                             {
                                 Tuesday.add(e);
                                 Friday.add(e);
                                 tric--;
-                            }else if((e.getMuscles() == "Abs") && (abs > 0))
+                            }else if(((e.getMuscles()).equals("Abs")) && (abs > 0))
                             {
                                 Wednesday.add(e);
                                 Saturday.add(e);
                                 abs--;
-                            }else if((e.getMuscles() == "All") && (cardio > 0))
+                            }else if(((e.getMuscles()).equals("All")) && (cardio > 0))
                             {
                                 Monday.add(e); Tuesday.add(e); Wednesday.add(e); Thursday.add(e); Friday.add(e);
                                 cardio--;
@@ -601,7 +615,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Wednesday.add(e);
                                 flex--;
@@ -614,7 +628,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
@@ -628,7 +642,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Monday.add(e);
                                 Friday.add(e);
@@ -641,7 +655,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Wednesday.add(e);
                                 flex--;
@@ -654,7 +668,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Monday.add(e);
                                 Friday.add(e);
@@ -667,7 +681,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
@@ -681,7 +695,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Monday.add(e);
                                 Friday.add(e);
@@ -694,7 +708,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
@@ -707,7 +721,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Saturday.add(e);
                                 flex--;
@@ -720,7 +734,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Monday.add(e);
                                 Friday.add(e);
@@ -733,7 +747,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Tuesday.add(e);
                                 Thursday.add(e);
@@ -746,7 +760,7 @@ public class Exercise_Plan
                          {
                             e = ExerciseList.get(i);
                             
-                            if((e.getType() == "Flexibility") && (flex > 0))
+                            if(((e.getType()).equals("Flexibility")) && (flex > 0))
                             {
                                 Wednesday.add(e);
                                 Saturday.add(e);
@@ -765,118 +779,148 @@ public class Exercise_Plan
     {
         int i;
         Exercise e;
-        System.out.println("First of all some general information for the excution part of your plan: ");
+        System.out.println("First of all some general information for the execution part of your plan: ");
         switch(type)
         {
             case 1:
                 System.out.println("Since you selected for the Weight loss plan you must do for each exercise 3 sets of 20 repetitions.");
                 System.out.println("Also for cardio exercises that do not have a distance goal you have to do at least 20 minutes for each.");
-                System.out.println("Finally you must have breaks between each set and exercise that feel comfortable to you(Usually more than 1 minute but not more than 2 or 3).");
+                System.out.println("Finally you must have breaks between each set and exercise that feel comfortable to you(Usually more than 1 minute but not more than 2 or 3).\n");
                 break;
             case 2:
                 System.out.println("Since you selected for the Strength plan you must do for each exercise 4 sets of 10 repetitions.");
                 System.out.println("Also for cardio exercises that do not have a distance goal you have to do at least 10 minutes for each.");
-                System.out.println("Finally you must have breaks between each set and exercise of around 45 secs to 1 minute.");
+                System.out.println("Finally you must have breaks between each set and exercise of around 45 secs to 1 minute.\n");
                 break;
             case 3:
                 System.out.println("Since you selected for the Flexibility plan you must exercise for 60 to 90 minutes each day breaking down time evenly to each exercise.");
-                System.out.println("Finally you must have breaks between each exercise of around 2 minutes.");
+                System.out.println("Finally you must have breaks between each exercise of around 2 minutes.\n");
                 break;
         }
         System.out.println("The generated exercise plan is the following:");
         System.out.print("Monday: ");
         if(Monday.isEmpty())
         {
-            System.out.println("No exercise");
+            System.out.println("No exercise.\n");
         }else
         {
             for (i = 0; i < Monday.size(); i++)
             {
                 e = Monday.get(i);
                 
-                System.out.print(e.getExerName() + " ,");
+                if(i < (Monday.size() - 1))
+                {
+                    System.out.print(e.getExerName() + " ,");
+                }else
+                {
+                    System.out.println(e.getExerName() + ".\n");
+                }
             }
-            System.out.println(".");
         }
         
         System.out.print("Tuesday: ");
         
         if(Tuesday.isEmpty())
         {
-            System.out.println("No exercise");
+            System.out.println("No exercise.\n");
         }else
         {
             for (i = 0; i < Tuesday.size(); i++)
             {
                 e = Tuesday.get(i);
                 
-                System.out.print(e.getExerName() + " ,");
+                if(i < (Tuesday.size() - 1))
+                {
+                    System.out.print(e.getExerName() + " ,");
+                }else
+                {
+                    System.out.println(e.getExerName() + ".\n");
+                }
             }
-            System.out.println(".");
         }
         
         System.out.print("Wednesday: ");
         
         if(Wednesday.isEmpty())
         {
-            System.out.println("No exercise");
+            System.out.println("No exercise.\n");
         }else
         {
             for (i = 0; i < Wednesday.size(); i++)
             {
                 e = Wednesday.get(i);
                 
-                System.out.print(e.getExerName() + " ,");
+                if(i < (Wednesday.size() - 1))
+                {
+                    System.out.print(e.getExerName() + " ,");
+                }else
+                {
+                    System.out.println(e.getExerName() + ".\n");
+                }
             }
-            System.out.println(".");
         }
         
         System.out.print("Thursday: ");
         
         if(Thursday.isEmpty())
         {
-            System.out.println("No exercise");
+            System.out.println("No exercise.\n");
         }else
         {
             for (i = 0; i < Thursday.size(); i++)
             {
                 e = Thursday.get(i);
                 
-                System.out.print(e.getExerName() + " ,");
+                if(i < (Thursday.size() - 1))
+                {
+                    System.out.print(e.getExerName() + " ,");
+                }else
+                {
+                    System.out.println(e.getExerName() + ".\n");
+                }
             }
-            System.out.println(".");
         }
         
         System.out.print("Friday: ");
         
         if(Friday.isEmpty())
         {
-            System.out.println("No exercise");
+            System.out.println("No exercise.\n");
         }else
         {
             for (i = 0; i < Friday.size(); i++)
             {
                 e = Friday.get(i);
                 
-                System.out.print(e.getExerName() + " ,");
+                if(i < (Friday.size() - 1))
+                {
+                    System.out.print(e.getExerName() + " ,");
+                }else
+                {
+                    System.out.println(e.getExerName() + ".\n");
+                }
             }
-            System.out.println(".");
         }
         
         System.out.print("Saturday: ");
         
         if(Saturday.isEmpty())
         {
-            System.out.println("No exercise");
+            System.out.println("No exercise.\n");
         }else
         {
             for (i = 0; i < Saturday.size(); i++)
             {
                 e = Saturday.get(i);
                 
-                System.out.print(e.getExerName() + " ,");
+                if(i < (Saturday.size() - 1))
+                {
+                    System.out.print(e.getExerName() + " ,");
+                }else
+                {
+                    System.out.println(e.getExerName() + ".\n");
+                }
             }
-            System.out.println(".");
         }
         
         System.out.println("Synday: Remains always free, so you can rest and also it will be accompanied by a free day in the food plan where you can eat whatever you like.");
@@ -884,7 +928,7 @@ public class Exercise_Plan
         return;
     }
     
-    private void Make_changes() //methodos poy allazei dyo meres vasei epiloghs xrhsth.
+    private boolean Make_changes() //methodos poy allazei dyo meres vasei epiloghs xrhsth.
     {
         System.out.println("Do you want to make any changes to the plan that was made?(Answer with 'y' for to make a change or 'n' to not)");
         
@@ -894,7 +938,7 @@ public class Exercise_Plan
         
         String day;
         
-        if((choice == "y") || (choice == "yes") || (choice == "Y") || (choice == "YES"))
+        if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y"))
         {
             System.out.println("Please choose the day you want to change.");
             
@@ -1136,14 +1180,15 @@ public class Exercise_Plan
                           break;
                 default:
                           System.out.println("No match for the day you chose to change.");
+                          
             }
         }else
         {
             System.out.println("You selected to make no changes an so the plan will be saved to your profile.");
-            return;
+            return false;
         }
         
-        return;
+        return true;
     }
     
     private void Save_plan(User_profile u) //Methodos poy apothkeyei to programma sto profile toy xrhsth
@@ -1155,7 +1200,7 @@ public class Exercise_Plan
         u.setExFriday(Friday);
         u.setExSaturday(Saturday);
         
-        System.out.println("The plan was saved to your profile.");
+        System.out.println("The plan was saved to your profile.\n");
         return;
     }
 }

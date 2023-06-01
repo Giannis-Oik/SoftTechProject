@@ -1,11 +1,11 @@
 #BlueJ class context
 comment0.target=Meal
-comment1.params=n\ f\ d\ t
-comment1.target=Meal(java.lang.String,\ Food,\ Drink,\ java.lang.String)
+comment1.params=n\ f\ f2\ d\ t
+comment1.target=Meal(java.lang.String,\ Food,\ Food,\ Drink,\ java.lang.String)
 comment2.params=n\ f\ sec\ th\ d\ t
 comment2.target=Meal(java.lang.String,\ Food,\ Food,\ Food,\ Drink,\ java.lang.String)
-comment3.params=n\ f\ sec
-comment3.target=Meal(java.lang.String,\ Food,\ Food)
+comment3.params=n\ f\ d
+comment3.target=Meal(java.lang.String,\ Food,\ Drink)
 comment4.params=
 comment4.target=int\ getCalories()
 comment5.params=

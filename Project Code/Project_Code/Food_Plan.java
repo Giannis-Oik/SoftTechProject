@@ -23,6 +23,7 @@ public class Food_Plan
         Food_Plan plan = new Food_Plan();
         
         int type = 0;
+        boolean changes = false;
         
         System.out.println("The construction of your diet plan is underway.");
         
@@ -30,8 +31,12 @@ public class Food_Plan
         
         plan.Show_Plan();
         
-        plan.Make_changes();
-        
+        changes = plan.Make_changes();
+        if(changes)
+        {
+            System.out.println("Your changed plan is: ");
+            plan.Show_Plan();
+        }
         plan.Save_plan(u);
     }
     
@@ -127,7 +132,7 @@ public class Food_Plan
                 {
                     m = MealList.get(i);
                     
-                    if((m.getType() == "Breakfast") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                    if(((m.getType()).equals("Breakfast")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                     {
                         Monday.add(m); Tuesday.add(m); Wednesday.add(m); Thursday.add(m); Friday.add(m); Saturday.add(m);
                         count--;
@@ -144,7 +149,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -157,7 +162,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -170,7 +175,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -184,7 +189,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -197,7 +202,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -215,7 +220,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -228,7 +233,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -241,7 +246,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -255,7 +260,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -268,7 +273,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -286,7 +291,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -299,7 +304,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -312,7 +317,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -326,7 +331,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -339,7 +344,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -357,7 +362,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -370,7 +375,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -383,7 +388,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -397,7 +402,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -410,7 +415,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -428,7 +433,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -441,7 +446,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -454,7 +459,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -468,7 +473,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -481,7 +486,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -499,7 +504,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -512,7 +517,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -525,7 +530,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -539,7 +544,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -552,7 +557,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -568,7 +573,7 @@ public class Food_Plan
                 {
                     m = MealList.get(i);
                     
-                    if((m.getType() == "Breakfast") && (m.getCalories()  >= 320) && (count > 0))
+                    if(((m.getType()).equals("Breakfast")) && (m.getCalories()  >= 320) && (count > 0))
                     {
                         Monday.add(m); Tuesday.add(m); Wednesday.add(m); Thursday.add(m); Friday.add(m); Saturday.add(m);
                         count --;
@@ -585,7 +590,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Brunch") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                        if(((m.getType()).equals("Brunch")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -598,7 +603,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -611,7 +616,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -624,7 +629,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -638,7 +643,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -651,7 +656,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -664,7 +669,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -682,7 +687,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Brunch") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                        if(((m.getType()).equals("Brunch")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -695,7 +700,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -708,7 +713,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -721,7 +726,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -735,7 +740,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -748,7 +753,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -761,7 +766,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -779,7 +784,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Brunch") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                        if(((m.getType()).equals("Brunch")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -792,7 +797,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -805,7 +810,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -818,7 +823,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -832,7 +837,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -845,7 +850,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -858,7 +863,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -876,7 +881,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Brunch") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                        if(((m.getType()).equals("Brunch")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -889,7 +894,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -902,7 +907,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -915,7 +920,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -929,7 +934,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -942,7 +947,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -955,7 +960,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -973,7 +978,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Brunch") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                        if(((m.getType()).equals("Brunch")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -986,7 +991,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -999,7 +1004,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1012,7 +1017,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1026,7 +1031,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1039,7 +1044,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1052,7 +1057,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1070,7 +1075,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Brunch") && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
+                        if(((m.getType()).equals("Brunch")) && (m.getCalories() <= 300) && (m.getCalories() >= 200) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1083,7 +1088,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1096,7 +1101,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1109,7 +1114,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1123,7 +1128,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1136,7 +1141,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 250) && (m.getCalories() >= 150)&& (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1149,7 +1154,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() >= 750) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() >= 750) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1165,7 +1170,7 @@ public class Food_Plan
                 {
                     m = MealList.get(i);
                     
-                    if((m.getType() == "Breakfast") && (m.getCalories() <= 350) && (m.getCalories() >= 250) && (count > 0))
+                    if(((m.getType()).equals("Breakfast")) && (m.getCalories() <= 350) && (m.getCalories() >= 250) && (count > 0))
                     {
                         Monday.add(m); Tuesday.add(m); Wednesday.add(m); Thursday.add(m); Friday.add(m); Saturday.add(m);
                         count--;
@@ -1182,7 +1187,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -1195,7 +1200,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -1208,7 +1213,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -1222,7 +1227,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -1235,7 +1240,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Monday.add(m);
                             count--;
@@ -1253,7 +1258,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -1266,7 +1271,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -1279,7 +1284,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -1293,7 +1298,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -1306,7 +1311,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Tuesday.add(m);
                             count--;
@@ -1324,7 +1329,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -1337,7 +1342,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -1350,7 +1355,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -1364,7 +1369,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -1377,7 +1382,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Wednesday.add(m);
                             count--;
@@ -1395,7 +1400,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -1408,7 +1413,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -1421,7 +1426,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -1435,7 +1440,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -1448,7 +1453,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Thursday.add(m);
                             count--;
@@ -1466,7 +1471,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1479,7 +1484,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1492,7 +1497,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1506,7 +1511,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1519,7 +1524,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Friday.add(m);
                             count--;
@@ -1537,7 +1542,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1550,7 +1555,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Evening meal") && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
+                        if(((m.getType()).equals("Evening meal")) && (m.getCalories() <= 200) && (m.getCalories() >= 100) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1563,7 +1568,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1577,7 +1582,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Lunch") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Lunch")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1590,7 +1595,7 @@ public class Food_Plan
                     {
                         m = MealList.get(i);
                         
-                        if((m.getType() == "Dinner") && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
+                        if(((m.getType()).equals("Dinner")) && (m.getCalories() <= 800) && (m.getCalories() >= 700) && (count > 0))
                         {
                             Saturday.add(m);
                             count--;
@@ -1615,7 +1620,7 @@ public class Food_Plan
             m = Monday.get(1);
             System.out.println("Lunch: "+ m.getName());
             m = Monday.get(2);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Monday.size() == 4) //An sth mera yparxei mono prwino meshmeriano apogeymatino kai vradino 
         {
             m = Monday.get(0);
@@ -1625,7 +1630,7 @@ public class Food_Plan
             m = Monday.get(2);
             System.out.println("Evening meal: "+ m.getName());
             m = Monday.get(3);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Monday.size() == 5) //An sth mera yparxoun ola ta geymata
         {
             m = Monday.get(0);
@@ -1637,7 +1642,7 @@ public class Food_Plan
             m = Monday.get(3);
             System.out.println("Evening meal: "+ m.getName());
             m = Monday.get(4);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }
         
         System.out.println("Tuesday: ");
@@ -1649,7 +1654,7 @@ public class Food_Plan
             m = Tuesday.get(1);
             System.out.println("Lunch: "+ m.getName());
             m = Tuesday.get(2);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Tuesday.size() == 4)
         {
             m = Tuesday.get(0);
@@ -1659,7 +1664,7 @@ public class Food_Plan
             m = Tuesday.get(2);
             System.out.println("Evening meal: "+ m.getName());
             m = Tuesday.get(3);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Tuesday.size() == 5)
         {
             m = Tuesday.get(0);
@@ -1671,7 +1676,7 @@ public class Food_Plan
             m = Tuesday.get(3);
             System.out.println("Evening meal: "+ m.getName());
             m = Tuesday.get(4);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }
         
         System.out.println("Wednesday: ");
@@ -1683,7 +1688,7 @@ public class Food_Plan
             m = Wednesday.get(1);
             System.out.println("Lunch: "+ m.getName());
             m = Wednesday.get(2);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Wednesday.size() == 4)
         {
             m = Wednesday.get(0);
@@ -1693,7 +1698,7 @@ public class Food_Plan
             m = Wednesday.get(2);
             System.out.println("Evening meal: "+ m.getName());
             m = Wednesday.get(3);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Wednesday.size() == 5)
         {
             m = Wednesday.get(0);
@@ -1705,7 +1710,7 @@ public class Food_Plan
             m = Wednesday.get(3);
             System.out.println("Evening meal: "+ m.getName());
             m = Wednesday.get(4);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }
         
         System.out.println("Thursday: ");
@@ -1717,7 +1722,7 @@ public class Food_Plan
             m = Thursday.get(1);
             System.out.println("Lunch: "+ m.getName());
             m = Thursday.get(2);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Thursday.size() == 4)
         {
             m = Thursday.get(0);
@@ -1727,7 +1732,7 @@ public class Food_Plan
             m = Thursday.get(2);
             System.out.println("Evening meal: "+ m.getName());
             m = Thursday.get(3);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Thursday.size() == 5)
         {
             m = Thursday.get(0);
@@ -1739,7 +1744,7 @@ public class Food_Plan
             m = Thursday.get(3);
             System.out.println("Evening meal: "+ m.getName());
             m = Thursday.get(4);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }
         
         System.out.println("Friday: ");
@@ -1751,7 +1756,7 @@ public class Food_Plan
             m = Friday.get(1);
             System.out.println("Lunch: "+ m.getName());
             m = Friday.get(2);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Friday.size() == 4)
         {
             m = Friday.get(0);
@@ -1761,7 +1766,7 @@ public class Food_Plan
             m = Friday.get(2);
             System.out.println("Evening meal: "+ m.getName());
             m = Friday.get(3);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Friday.size() == 5)
         {
             m = Friday.get(0);
@@ -1773,7 +1778,7 @@ public class Food_Plan
             m = Friday.get(3);
             System.out.println("Evening meal: "+ m.getName());
             m = Friday.get(4);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }
         
         System.out.println("Saturday: ");
@@ -1785,7 +1790,7 @@ public class Food_Plan
             m = Saturday.get(1);
             System.out.println("Lunch: "+ m.getName());
             m = Saturday.get(2);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Saturday.size() == 4)
         {
             m = Saturday.get(0);
@@ -1795,7 +1800,7 @@ public class Food_Plan
             m = Saturday.get(2);
             System.out.println("Evening meal: "+ m.getName());
             m = Saturday.get(3);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }else if(Saturday.size() == 5)
         {
             m = Saturday.get(0);
@@ -1807,7 +1812,7 @@ public class Food_Plan
             m = Saturday.get(3);
             System.out.println("Evening meal: "+ m.getName());
             m = Saturday.get(4);
-            System.out.println("Dinner: "+ m.getName());
+            System.out.println("Dinner: "+ m.getName() + "\n");
         }
         
         System.out.println("Synday: Its a <<cheat>> day where you can eat whatever you want.");
@@ -1815,7 +1820,7 @@ public class Food_Plan
         return;
     }
     
-    private void Make_changes() //Methodos gia tis allages toy kwdika vasei epilogwn tou xrhsth
+    private boolean Make_changes() //Methodos gia tis allages toy kwdika vasei epilogwn tou xrhsth
     {
         System.out.println("Do you want to make any changes to the plan that was made?(Answer with 'y' for to make a change or 'n' to not)");
         
@@ -1825,7 +1830,7 @@ public class Food_Plan
         
         String day;
         
-        if((choice == "y") || (choice == "yes") || (choice == "Y") || (choice == "YES"))
+        if(choice.equalsIgnoreCase("y") || choice.equalsIgnoreCase("yes"))
         {
             System.out.println("Please choose the day you want to change.");
             
@@ -2071,10 +2076,10 @@ public class Food_Plan
         }else
         {
             System.out.println("You selected to make no changes an so the plan will be saved to your profile.");
-            return;
+            return false;
         }
         
-        return;
+        return true;
     }
     
     private void Save_plan(User_profile u) //Apothikeysh toy programmatos sto profile tou xrhsth
@@ -2086,7 +2091,7 @@ public class Food_Plan
         u.setFoodFriday(Friday);
         u.setFoodSaturday(Saturday);
         
-        System.out.println("The plan was saved to your profile.");
+        System.out.println("The plan was saved to your profile.\n");
         return;
     }
 }
