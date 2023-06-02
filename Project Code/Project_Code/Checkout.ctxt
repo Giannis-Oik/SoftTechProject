@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Checkout
+comment1.params=
+comment1.target=Checkout()
+comment2.params=products
+comment2.target=double\ calculateTotal(java.util.ArrayList)
+comment3.params=products
+comment3.target=double\ calculateTotalWithTravelCosts(java.util.ArrayList)
+comment4.params=products\ cod
+comment4.target=double\ calculateTotalWithCOD(java.util.ArrayList,\ int)
+comment5.params=products
+comment5.target=double\ calculateTotalWithDiscount(java.util.ArrayList)
+comment6.params=
+comment6.target=double\ getTotalAmount()
+comment7.params=address
+comment7.target=void\ setAddress(java.lang.String)
+numComments=8
