@@ -17,7 +17,7 @@ public class Plan
            Scanner input = new Scanner(System.in);
            String nc = input.nextLine();
            
-           if(nc != "y" && nc != "Y" && nc != "YES" && nc != "yes") 
+           if((nc.equalsIgnoreCase("n")) || (nc.equalsIgnoreCase("no")))
            {
                System.out.println("You selected to not make a new plan and you will now return to the home screen.");
                return;

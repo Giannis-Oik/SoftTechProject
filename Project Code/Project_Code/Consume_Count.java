@@ -19,7 +19,7 @@ public class Consume_Count
         showFoodAndDrinksList(FoodList, DrinksList);
         
         int cont = 0;
-        int found = 0;
+        boolean found = false;
         
         while(cont == 0) //Gia oso o xrhsths epilegei na vazei items sto synolo (An cont = 0 synexizei alliws me 1 bgazei to synolo kai epistrefei sthn calorie counter)
         {
@@ -29,9 +29,9 @@ public class Consume_Count
         
             String item = input.nextLine();
             
-            searchFoodAndDrinks(FoodList, DrinksList, found, item, count);
+            found = searchFoodAndDrinks(FoodList, DrinksList, item, count);
             
-            if(found == 1)
+            if(found)
             {
                 System.out.println("Your selection was found and its calories were added to the total.");
             }else{System.out.println("Your selection was not found.");}
@@ -40,7 +40,7 @@ public class Consume_Count
             
             item = input.nextLine();
             
-            if(item != "n" && item != "N" && item != "NO" && item != "no") 
+            if((item.equalsIgnoreCase("no")) || (item.equalsIgnoreCase("n")))
             {
                 cont = 1;
                 System.out.println("You selected to proceed.");
@@ -52,58 +52,56 @@ public class Consume_Count
     }
     
     static void showFoodAndDrinksList(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList) //Methodos poy diatrexei tis listes faghtwn kai potwn kai ta emfanizei
+    {
+        for(int i = 0; i < FoodList.size(); i++)
         {
-             for(int i = 0; i < FoodList.size(); i++)
-             {
-                 System.out.println(FoodList.get(i));
-             }
-        
-             for(int i = 0; i < DrinksList.size(); i++)
-             {
-                 System.out.println(DrinksList.get(i));
-             }
-             
-             return;
+            Food f = FoodList.get(i);
+            System.out.println(f.getName());
         }
         
-    static void searchFoodAndDrinks(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList, int found, String item, Consume_Count count)//Methodos poy pairnei thn eisodo toy xrhsth kai thn anazhta
+        for(int i = 0; i < DrinksList.size(); i++)
+        {
+            Drink d = DrinksList.get(i);
+            System.out.println(d.getName());
+        }
+             
+        return;
+    }
+        
+    static boolean searchFoodAndDrinks(ArrayList<Food> FoodList, ArrayList<Drink> DrinksList, String item, Consume_Count count)//Methodos poy pairnei thn eisodo toy xrhsth kai thn anazhta
     {
         Food f;
         Drink d;
-        
+               
         for(int i = 0; i < FoodList.size(); i++)
-            {
-                f = FoodList.get(i);
+        {
+            f = FoodList.get(i);
                 
-                if(item == f.getName()) //An vrei thn eisodo th prosthetei sto synoliko arithmo thermidwn kai proxwraei.
-                {
-                    found = 1;
-                    count.total_calories += f.getCalories();
-                    break;
-                }
-            }
-            
-        if(found == 0) //An h eisodos vrethei sta faghta den elegxei kan ta pota (found = 1) alliws epeidh found = 0 elegxei me ton idio tropo.
+            if(item.equalsIgnoreCase(f.getName())) //An vrei thn eisodo th prosthetei sto synoliko arithmo thermidwn kai proxwraei.
             {
-                for(int i = 0; i < DrinksList.size(); i++)
-                {
-                    d = DrinksList.get(i);
-                
-                   if(item == d.getName())
-                   {
-                       found = 1;
-                       count.total_calories += d.getCalories();
-                       break;
-                   }
-                }
+                count.total_calories += f.getCalories();
+                return true;
             }
-            
-        return;
+                
+        }
+           
+        for(int i = 0; i < DrinksList.size(); i++)
+        {
+            d = DrinksList.get(i);
+                
+            if(item.equalsIgnoreCase(d.getName()))
+            {
+                count.total_calories += d.getCalories();
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     static void ShowTotal(Consume_Count count) //Methodos poy emfanizei ton synoliko arithmo thermidwn
     {
-        System.out.println("Your total calories are: " + count.total_calories);
+        System.out.println("Your total consumed calories are: " + count.total_calories);
         
         return;
     }

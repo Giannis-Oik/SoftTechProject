@@ -2,9 +2,9 @@ public class Food
 {
     private String foodname;
     private int foodcalories, foodprotein, foodsodium, foodpot, foodchol, foodcarbs;
-    private float foodfat;
+    private double foodfat;
     
-    public Food(String name,int cal,int protein,int sodium,int pot,int chol,int carbs,float fat)
+    public Food(String name,int cal,int protein,int sodium,int pot,int chol,int carbs,double fat)
     {
         foodname = name;
         foodcalories = cal;
@@ -46,7 +46,7 @@ public class Food
         return foodcarbs;
     }
     
-    public float getFat()
+    public double getFat()
     {
         return foodfat;
     }
