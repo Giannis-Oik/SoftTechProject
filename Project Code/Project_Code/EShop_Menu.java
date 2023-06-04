@@ -21,6 +21,6 @@ static void openEShop() {
 
    static void openTracker(){
     Order_Tracker orderTracker = new Order_Tracker();//apo to menou tou eshop pame sto order tracking kommati tou
- 
+    orderTracker.track_ordering();
 }
 }
