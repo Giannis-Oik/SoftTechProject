@@ -1,19 +1,53 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Products {
     public static Map<String, Integer> stock = new HashMap<>();
+    private String name;
+    private double price;
+    private String category;
+    private int quantity;
+    public Products(String name, double price, String category, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
     
-    public static void checkStock() {
-        System.out.println("Current stock:");
-        for (Map.Entry<String, Integer> entry : stock.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+    public String getCategory() {
+        return category;
     }
     
-    public static void changeThings(Scanner scanner) {
+    public int getQuantity(){
+        return quantity;
+    }
+    
+    public static void checkStock() {
+       System.out.println("Current stock:");
+       for (int i = 0; i < Shop.products.size(); i++) {
+         Products product = Shop.products.get(i);
+         System.out.println("ID: " + (i + 1));
+         System.out.println("Name: " + product.getName());
+         System.out.println("Price: " + product.getPrice());
+         System.out.println("Quantity: " + product.getQuantity());
+         System.out.println();
+       }
+    }
+    
+    public static void changeThings(Scanner scanner, Scanner scanner2) {
         while (true) {
+           
             System.out.println("----- Change Products -----");
             System.out.println("1. Add product");
             System.out.println("2. Delete product");
@@ -26,7 +60,7 @@ public class Products {
 
             switch (choice) {
                 case 1:
-                    addProduct(scanner);
+                    addProduct(scanner, scanner2);
                     break;
                 case 2:
                     deleteProduct(scanner);
@@ -43,15 +77,26 @@ public class Products {
         }
     }
     
-    public static void addProduct(Scanner scanner) {
+    public static void addProduct(Scanner scanner, Scanner scanner2) {
         System.out.print("Enter the product name: ");
-        String productName = scanner.nextLine();
-        System.out.print("Enter the quantity: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter the price: ");
+        double price = scanner.nextDouble();
+        System.out.println("Enter the product category (Supplements, Clothes, Shoes, Accessories, Gear) : ");
+        String category = scanner2.nextLine();
+        System.out.print("Enter the product's quantity: ");
         int quantity = scanner.nextInt();
         scanner.nextLine(); 
-
-        stock.put(productName, quantity);
-        System.out.println("Product added successfully.");
+        for (int i = 0; i < Shop.products.size(); i++) {
+           Products product = Shop.products.get(i);
+           if(name == product.getName()){
+               quantity = quantity + product.getQuantity();
+               Shop.products.add(new Products(name,price,category,quantity));
+           }
+           else{
+               Shop.products.add(new Products(name,price,category,quantity));
+           }
+       }
     }
 
     public static void deleteProduct(Scanner scanner) {

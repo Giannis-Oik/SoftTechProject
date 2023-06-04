@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Checkout extends Shop {
-    private ArrayList<Product> products;
+    private ArrayList<Products> products;
     private double totalAmount;
     String address;
 
@@ -10,36 +10,28 @@ public class Checkout extends Shop {
         
     }
 
-    public double calculateTotal(ArrayList<Product> products) {
+    public double calculateTotal(ArrayList<Products> products) {
         this.products = products;
         totalAmount = 0.0;
-        for (Product product : products) {
+        for (Products product : products) {
             totalAmount += product.getPrice();
         }
-        System.out.println("Total amount calculated: €" + totalAmount);
         return totalAmount;
     }
 
-    public double calculateTotalWithTravelCosts(double travelCosts) {
-        totalAmount += travelCosts;
-        System.out.println("Added travel costs: €" + travelCosts);
-        System.out.println("Updated total amount: €" + totalAmount);
+    public double calculateTotalWithTravelCosts(ArrayList<Products> products) {
+        //
         return totalAmount;
     }
 
-    public double calculateTotalWithCOD(double cod) {
-        totalAmount += cod;
-        System.out.println("Added COD amount: €" + cod);
-        System.out.println("Updated total amount: €" + totalAmount);
+    public double calculateTotalWithCOD(ArrayList<Products> products, int cod) {
+        //
         return totalAmount;
     }
     
     
-    public double calculateTotalWithDiscount(double discountPercentage) {
-        double discountAmount = (discountPercentage / 100) * totalAmount;
-        totalAmount -= discountAmount;
-        System.out.println("Applied discount of " + discountPercentage + "%: €" + discountAmount);
-        System.out.println("Updated total amount: €" + totalAmount);
+    public double calculateTotalWithDiscount(ArrayList<Products> products) {
+        //
         return totalAmount;
     }
 
@@ -53,8 +45,5 @@ public class Checkout extends Shop {
         this.address = address;
     }
 
-    public String getAddress() {
-        return address;
-    }
    
 }
