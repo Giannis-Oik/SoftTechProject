@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class EShop{
     private static final String ADMIN_USERNAME = "admin";
     private static final String ADMIN_PASSWORD = "admin123";
-    
     public static void checkadmin() {
         Scanner scanner = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);
         System.out.print("Username: ");
         String username = scanner.nextLine();
         System.out.print("Password: ");
@@ -16,14 +16,15 @@ public class EShop{
             return;
         }
 
-        editEshop(scanner);
+        editEshop(scanner,scanner2);
     }
 
     private static boolean isAdmin(String username, String password) {
         return ADMIN_USERNAME.equals(username) && ADMIN_PASSWORD.equals(password);
     }
 
-    private static void editEshop(Scanner scanner) {
+    private static void editEshop(Scanner scanner, Scanner scanner2){
+        Shop shop = new Shop();
         while (true) {
             System.out.println("----- E-Shop Administration -----");
             System.out.println("1. Check stock");
@@ -41,7 +42,7 @@ public class EShop{
                     Products.checkStock();
                     break;
                 case 2:
-                    Products.changeThings(scanner);
+                    Products.changeThings(scanner, scanner2);
                     break;
                 case 3:
                     Categories.sortInCategories(scanner);

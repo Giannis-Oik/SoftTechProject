@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Profile_Page extends Forum{
-    
-    
     public static void showProfilePage(Scanner scanner) {
         System.out.println("----- Profile Page -----");
         System.out.println("1. Open user list");
