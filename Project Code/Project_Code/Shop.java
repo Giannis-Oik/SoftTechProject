@@ -148,9 +148,9 @@ private void checkoutProcess() {
         Checkout checkout = new Checkout();
         double totalAmount=checkout.calculateTotal(products);
         giveAddress(checkout);
-        totalAmount=checkout.calculateTotalWithTravelCosts(products);
+        totalAmount=checkout.calculateTotalWithTravelCosts(2.99); 
         //edw prepei na elegxoume pws tha ginei h syndesh me ta discounts
-        //checkout.calculateTotalWithDiscount(products);
+        //checkout.calculateTotalWithDiscount(discount);
         
         Payment payment = new Payment(totalAmount);
         payment.makePayment(checkout.getTotalAmount());
@@ -159,7 +159,7 @@ private void checkoutProcess() {
         if (chosenPaymentMethod.equalsIgnoreCase("card")) {
             provideCardDetails(payment);
         } else {
-            checkout.calculateTotalWithCOD(products, 10);
+            checkout.calculateTotalWithCOD(3.49);
         }
 
         if (!confirmPayment(payment)) {

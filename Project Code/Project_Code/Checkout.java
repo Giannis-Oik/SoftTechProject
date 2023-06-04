@@ -16,22 +16,30 @@ public class Checkout extends Shop {
         for (Product product : products) {
             totalAmount += product.getPrice();
         }
+        System.out.println("Total amount calculated: €" + totalAmount);
         return totalAmount;
     }
 
-    public double calculateTotalWithTravelCosts(ArrayList<Product> products) {
-        //
+    public double calculateTotalWithTravelCosts(double travelCosts) {
+        totalAmount += travelCosts;
+        System.out.println("Added travel costs: €" + travelCosts);
+        System.out.println("Updated total amount: €" + totalAmount);
         return totalAmount;
     }
 
-    public double calculateTotalWithCOD(ArrayList<Product> products, int cod) {
-        //
+    public double calculateTotalWithCOD(double cod) {
+        totalAmount += cod;
+        System.out.println("Added COD amount: €" + cod);
+        System.out.println("Updated total amount: €" + totalAmount);
         return totalAmount;
     }
     
     
-    public double calculateTotalWithDiscount(ArrayList<Product> products) {
-        //
+    public double calculateTotalWithDiscount(double discountPercentage) {
+        double discountAmount = (discountPercentage / 100) * totalAmount;
+        totalAmount -= discountAmount;
+        System.out.println("Applied discount of " + discountPercentage + "%: €" + discountAmount);
+        System.out.println("Updated total amount: €" + totalAmount);
         return totalAmount;
     }
 
@@ -45,5 +53,8 @@ public class Checkout extends Shop {
         this.address = address;
     }
 
+    public String getAddress() {
+        return address;
+    }
    
 }
