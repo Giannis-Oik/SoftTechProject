@@ -3,9 +3,11 @@ import java.util.Scanner;
 public class Rewards
 {
     private int categoryDiscount;
-    public int totalPoints;
+    public int totalPoints=0;
     private String category;
-    
+    private int miniWorkoutPoints=0;
+    private int programPoints=0;
+    private int caloriePoints=0;
     public Rewards()
     {
         this.categoryDiscount = 0;
@@ -16,6 +18,7 @@ public class Rewards
     public static void DailyRewards(ArrayList<Exercise> ExerciseList, User_profile u)
     {
         Rewards rewards = new Rewards();
+        rewards.totalPoints=u.getProfilePoints();
         Mini_Workout.showMiniWorkout(ExerciseList);
         Scanner input2=new Scanner(System.in);
         System.out.println("Did you complete the daily mini workout? ");
@@ -28,7 +31,6 @@ public class Rewards
         {
             System.out.println("Next time complete it to gain points! ");
         }
-        //showPersonalWorkout();
         System.out.println("Did you complete your personal workout? ");
         String yesno2=input2.nextLine();
         if(yesno.equals("yes"))
@@ -51,13 +53,13 @@ public class Rewards
         {
             rewards.deduceCaloriePoints();
         }
-        //updateCategory(User_ProfileList);
+        rewards.TotalPoints(u);
+        rewards.updateCategory(u);
         rewards.categoryDiscount(u);
         return ;
     }
-    public static void updateCategory(ArrayList<User_profile> User_ProfileList,User_profile u)
+    public static void updateCategory(User_profile u)
     {
-        //points=miniWorkoutPoints+programPoints+caloriePoints;
         System.out.println("Your total points are: "+u.getProfilePoints());
         if(u.getProfilePoints()>=600)
         {
@@ -71,7 +73,9 @@ public class Rewards
         {
             u.category="Bronze";
         }
-        System.out.println("Your category is: "+u.category);
+        String newcat=u.category;
+        u.setProfileCategory(newcat);
+        System.out.println("Your category is: "+newcat);
     }
     public static void categoryDiscount(User_profile u)
     {
@@ -88,30 +92,32 @@ public class Rewards
         {
             u.setProfileDiscount(0);
         }
-        System.out.println("According to your category, you have a discount on the shop "+u.getProfileDiscount() + "%");
+        System.out.println("According to your category, you have a discount on the shop: "+u.getProfileDiscount() + "%");
     }
     public void addMiniWorkoutPoints()
     {
-        this.totalPoints+=5;
+        miniWorkoutPoints=5;
     }
     public void addProgramPoints()
     {
-         this.totalPoints+=15;
+         programPoints=15;
     }
     public void deduceProgramPoints()
     {
-        this.totalPoints-=10;
+        programPoints=-10;
     }
     public void addCaloriePoints()
     {
-        this.totalPoints+=10;
+        caloriePoints=10;
     }
     public void deduceCaloriePoints()
     {
-        this.totalPoints-=10;
+        caloriePoints=-10;
     }
     public void TotalPoints(User_profile u)
     {
-        u.setProfilePoints(totalPoints);
+        int profPoints=u.getProfilePoints()+miniWorkoutPoints+programPoints+caloriePoints;
+        System.out.println(profPoints);
+        u.setProfilePoints(profPoints);
     }
 }

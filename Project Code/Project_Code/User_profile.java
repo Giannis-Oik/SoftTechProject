@@ -127,8 +127,9 @@ public class User_profile extends User
             age = input.nextInt();
         }
         this.setProfileAge(age);
+        Scanner scan = new Scanner(System.in);
         System.out.print("Give your sex: ");
-        String sex = input.nextLine();
+        String sex = scan.nextLine();
         this.setProfileSex(sex);
         System.out.print("Give your height(in cms without comma): ");
         int height = input.nextInt();
@@ -138,7 +139,7 @@ public class User_profile extends User
             height = input.nextInt();
         }
         this.setProfileHeight(height);
-        System.out.print("Give your weight(in kgs/ if needed put comma(,)): ");
+        System.out.print("Give your weight(in kgs, for example 78.50): ");
         double weight = input.nextDouble();
         while(weight < 0)
         {
@@ -402,7 +403,7 @@ public class User_profile extends User
     
     public void setProfilePoints(int profilePoints)
     {
-        this.points += profilePoints;
+        this.points = profilePoints;
     }
     
     public void setProfileDiscount(double profileDiscount)
