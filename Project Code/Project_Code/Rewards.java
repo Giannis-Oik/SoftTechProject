@@ -2,22 +2,27 @@ import java.util.*;
 import java.util.Scanner;
 public class Rewards
 {
-    private static int points;
-    private static int miniWorkoutPoints;
-    private static int programPoints;
-    private static int caloriePoints;
-    private static int categoryDiscount;
-    private static String category;
+    private int categoryDiscount;
+    public int totalPoints;
+    private String category;
     
-    public static void Rewards()
+    public Rewards()
     {
-        Mini_Workout.showMiniWorkout();
+        this.categoryDiscount = 0;
+        this.totalPoints = 0;
+        this.category = "";
+    }
+    
+    public static void DailyRewards(ArrayList<Exercise> ExerciseList, User_profile u)
+    {
+        Rewards rewards = new Rewards();
+        Mini_Workout.showMiniWorkout(ExerciseList);
         Scanner input2=new Scanner(System.in);
         System.out.println("Did you complete the daily mini workout? ");
         String yesno=input2.nextLine();
         if(yesno.equals("yes"))
         {
-            addMiniWorkoutPoints();
+            rewards.addMiniWorkoutPoints();
         }
         else if(yesno.equals("no"))
         {
@@ -28,11 +33,11 @@ public class Rewards
         String yesno2=input2.nextLine();
         if(yesno.equals("yes"))
         {
-            addProgramPoints();
+            rewards.addProgramPoints();
         }
         else if(yesno.equals("no"))
         {
-            deduceProgramPoints();
+            rewards.deduceProgramPoints();
         }
         Scanner input3=new Scanner(System.in);
         System.out.println("Did you consume within 200 calories more or less than your diet says so? ");
@@ -40,68 +45,73 @@ public class Rewards
         if(yesno3.equals("yes"))
         {
             System.out.println("Congratulations for keeping up with your diet! ");
-            addCaloriePoints();
+            rewards.addCaloriePoints();
         }
         else if(yesno3.equals("no"))
         {
-            deduceCaloriePoints();
+            rewards.deduceCaloriePoints();
         }
-        updateCategory();
-        categoryDiscount();
+        //updateCategory(User_ProfileList);
+        rewards.categoryDiscount(u);
         return ;
     }
-    public static void addMiniWorkoutPoints()
+    public static void updateCategory(ArrayList<User_profile> User_ProfileList,User_profile u)
     {
-        miniWorkoutPoints=miniWorkoutPoints+5;
-    }
-    public static void addProgramPoints()
-    {
-         programPoints=programPoints+15;
-    }
-    public static void deduceProgramPoints()
-    {
-        programPoints=programPoints-10;
-    }
-    public static void addCaloriePoints()
-    {
-        caloriePoints=caloriePoints+10;
-    }
-    public static void deduceCaloriePoints()
-    {
-        caloriePoints=caloriePoints-10;
-    }
-    public static void updateCategory()
-    {
-        points=miniWorkoutPoints+programPoints+caloriePoints;
-        System.out.println("Your total points are: "+points);
-        if(points>=600)
+        //points=miniWorkoutPoints+programPoints+caloriePoints;
+        System.out.println("Your total points are: "+u.getProfilePoints());
+        if(u.getProfilePoints()>=600)
         {
-            category="Gold";
+            u.category="Gold";
         }
-        else if((points>=200) && (points<600))
+        else if((u.getProfilePoints()>=200) && (u.getProfilePoints()<600))
         {
-            category="Silver";
+            u.category="Silver";
         }
-        else if((points>=0) && (points<200))
+        else if((u.getProfilePoints()>=0) && (u.getProfilePoints()<200))
         {
-            category="Bronze";
+            u.category="Bronze";
         }
-        System.out.println("Your category is: "+category);
+        System.out.println("Your category is: "+u.category);
     }
-    public static void categoryDiscount()
+    public static void categoryDiscount(User_profile u)
     {
-        if(category.equals("Gold"))
+        String cat=u.getProfileCategory();
+        if(cat.equals("Gold"))
         {
-            categoryDiscount=25;//25%
+            u.setProfileDiscount(25);//25%
         }
-        else if(category.equals("Silver"))
+        else if(cat.equals("Silver"))
         {
-            categoryDiscount=15;//15%
+            u.setProfileDiscount(15);//15%
         }
-        else if(category.equals("Bronze"))
+        else if(cat.equals("Bronze"))
         {
-            categoryDiscount=0;
+            u.setProfileDiscount(0);
         }
-        System.out.println("According to your category, you have a discount on the shop "+categoryDiscount+ "%");
+        System.out.println("According to your category, you have a discount on the shop "+u.getProfileDiscount() + "%");
+    }
+    public void addMiniWorkoutPoints()
+    {
+        this.totalPoints+=5;
+    }
+    public void addProgramPoints()
+    {
+         this.totalPoints+=15;
+    }
+    public void deduceProgramPoints()
+    {
+        this.totalPoints-=10;
+    }
+    public void addCaloriePoints()
+    {
+        this.totalPoints+=10;
+    }
+    public void deduceCaloriePoints()
+    {
+        this.totalPoints-=10;
+    }
+    public void TotalPoints(User_profile u)
+    {
+        u.setProfilePoints(totalPoints);
     }
 }

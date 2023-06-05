@@ -1,7 +1,5 @@
 #BlueJ class context
 comment0.target=Mini_Workout
-comment1.params=
-comment1.target=java.lang.String\ toString()
-comment2.params=
-comment2.target=void\ showMiniWorkout()
-numComments=3
+comment1.params=ExerciseList
+comment1.target=void\ showMiniWorkout(java.util.ArrayList)
+numComments=2
