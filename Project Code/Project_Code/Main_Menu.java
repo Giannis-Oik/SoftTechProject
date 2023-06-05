@@ -15,7 +15,7 @@ public class Main_Menu
     {
         ExerciseList_init(); Lists_init();
         User_ProfileList_init();
-    initializeProducts();
+        initializeProducts();
       
         User_profile u  = User_profile.login(UserList);
         
@@ -83,9 +83,9 @@ public class Main_Menu
     
     private static void User_ProfileList_init()
     {
-        User_profile u1 = new User_profile("Nikos","nikos1",22,"nikos@gmail.com","male",183,3581,500,70,10,"Silver", "Whatever"); 
-        User_profile u2 = new User_profile("Stamatis","stamatis1",22,"stamatis@gmail.com","male",185,3582,230,82,10,"Silver","Whatever"); 
-        User_profile u3 = new User_profile("Giannis","giannis1",22,"giannis@gmail.com","male",185,3583,300,75,10,"Silver","Whatever"); 
+        User_profile u1 = new User_profile("Nikos","nikos1",22,"nikos@gmail.com","male",183,3581,590,70,10,"Silver", "Weightlifting"); 
+        User_profile u2 = new User_profile("Stamatis","stamatis1",22,"stamatis@gmail.com","male",185,3582,230,82,10,"Silver","Trx"); 
+        User_profile u3 = new User_profile("Giannis","giannis1",22,"giannis@gmail.com","male",185,3583,300,75,10,"Silver","Crossfit"); 
         User_profile u4 = new User_profile("Dimitris","dimitris1",22,"dimitris@gmail.com","male",183,3584,610,90,10,"Gold","Whatever");
         
         UserList.add(u1); UserList.add(u2); UserList.add(u3); UserList.add(u4);
