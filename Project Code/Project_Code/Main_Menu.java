@@ -8,21 +8,13 @@ public class Main_Menu
     static ArrayList<Drink> DrinksList = new ArrayList<Drink>();
     static ArrayList<Exercise> ExerciseList = new ArrayList<Exercise>();
     static ArrayList<Meal> MealList = new ArrayList<Meal>();
-    static ArrayList<User_profile> UserList =new ArrayList<User_profile>();
-    //static ArrayList<Exercise> MiniWorkout = new ArrayList<Exercise>();
+    static ArrayList<Products> products = new ArrayList<Products>();
     public static void Main_Menu()
     {
-        ExerciseList_init(); Lists_init();
-        User_ProfileList_init();
-      
-        User_profile u  = User_profile.login(UserList);
-        
-        /*for(User_profile user:UserList)
-        {
-            System.out.println(user.getProfileType());
-        }*/
+        ExerciseList_init(); Lists_init(); initializeProducts();
         
         int count = 1;
+        User_profile u = new User_profile();
         while(count == 1)
         {
             System.out.println("Main menu:");
@@ -53,19 +45,17 @@ public class Main_Menu
                     break;
                 case 3:
                     System.out.println("E-shop.");
-                    //EShop_Menu.eshopStart();
+                    EShop_Menu.eshopStart();
                     break;
                 case 4:
-                    System.out.println("Check and update your profile.");
-                    u.CheckProfile();
+                    System.out.println("Check your profile.");
                     break;
                 case 5:
                     System.out.println("Daily awards.");
-                    Rewards.DailyRewards(ExerciseList,u);
                     break;
                 case 6:
                     System.out.println("Eshop(admin only).");
-                    EShop.checkadmin();
+                    EShop.checkadmin(products);
                     break;
                 case 7:
                     System.out.println("Forum.");
@@ -77,16 +67,6 @@ public class Main_Menu
                     break;
             }
         }
-    }
-    
-    private static void User_ProfileList_init()
-    {
-        User_profile u1 = new User_profile("Nikos","nikos1",22,"nikos@gmail.com","male",183,3581,500,70,10,"Silver", "Whatever"); 
-        User_profile u2 = new User_profile("Stamatis","stamatis1",22,"stamatis@gmail.com","male",185,3582,230,82,10,"Silver","Whatever"); 
-        User_profile u3 = new User_profile("Giannis","giannis1",22,"giannis@gmail.com","male",185,3583,300,75,10,"Silver","Whatever"); 
-        User_profile u4 = new User_profile("Dimitris","dimitris1",22,"dimitris@gmail.com","male",183,3584,610,90,10,"Gold","Whatever");
-        
-        UserList.add(u1); UserList.add(u2); UserList.add(u3); UserList.add(u4);
     }
     
     private static void ExerciseList_init()
@@ -143,5 +123,42 @@ public class Main_Menu
         MealList.add(m21); MealList.add(m22); MealList.add(m23); MealList.add(m24); MealList.add(m25);
     }
     
-    
+    public static void initializeProducts() {
+     
+       
+        // Supplements
+        products.add(new Products("Protein Powder 1", 29.99, "Supplements",50));
+        products.add(new Products("Protein Powder 2", 39.99, "Supplements",40));
+        products.add(new Products("Pre-Workout 1", 29.99, "Supplements",100));
+        products.add(new Products("Pre-Workout 2", 39.99, "Supplements",60));
+        products.add(new Products("Magnesium", 19.99, "Supplements",150));
+
+        // Clothes
+        products.add(new Products("T-Shirt", 19.99, "Clothes",80));
+        products.add(new Products("Shorts", 24.99, "Clothes",90));
+        products.add(new Products("Leggings", 29.99, "Clothes",70));
+        products.add(new Products("Hoodie", 39.99, "Clothes",65));
+        products.add(new Products("Jacket", 49.99, "Clothes",30));
+
+        // Shoes
+        products.add(new Products("Running Shoes", 79.99, "Shoes",50));
+        products.add(new Products("Training Shoes", 89.99, "Shoes",30));
+        products.add(new Products("Basketball Shoes", 99.99, "Shoes",40));
+        products.add(new Products("Sneakers", 69.99, "Shoes",20));
+        products.add(new Products("Sandals", 39.99, "Shoes",40));
+
+        // Accessories
+        products.add(new Products("Gym Bag", 39.99, "Accessories",30));
+        products.add(new Products("Water Bottle", 9.99, "Accessories",50));
+        products.add(new Products("Yoga Mat", 19.99, "Accessories",60));
+        products.add(new Products("Resistance Bands", 14.99, "Accessories",100));
+        products.add(new Products("Gloves", 14.99, "Accessories",40));
+
+        // Gear
+        products.add(new Products("Dumbbells", 49.99, "Gear",50));
+        products.add(new Products("Jump Rope", 9.99, "Gear",20));
+        products.add(new Products("Exercise Ball", 29.99, "Gear",15));
+        products.add(new Products("Foam Roller", 19.99, "Gear",30));
+        products.add(new Products("Weight Bench", 149.99, "Gear",20));
+    }
 }

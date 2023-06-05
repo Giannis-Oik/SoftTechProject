@@ -1,9 +1,9 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class EShop{
     private static final String ADMIN_USERNAME = "admin";
     private static final String ADMIN_PASSWORD = "admin123";
-    public static void checkadmin() {
+    public static void checkadmin(ArrayList<Products> products) {
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
         System.out.print("Username: ");
@@ -16,16 +16,16 @@ public class EShop{
             return;
         }
 
-        editEshop(scanner,scanner2);
+        editEshop(scanner,scanner2,products);
     }
 
     private static boolean isAdmin(String username, String password) {
         return ADMIN_USERNAME.equals(username) && ADMIN_PASSWORD.equals(password);
     }
 
-    private static void editEshop(Scanner scanner, Scanner scanner2){
-        Shop shop = new Shop();
-        while (true) {
+    private static void editEshop(Scanner scanner, Scanner scanner2,ArrayList<Products> products){
+         Shop shop = new Shop();
+         while (true) {
             System.out.println("----- E-Shop Administration -----");
             System.out.println("1. Check stock");
             System.out.println("2. Change products");
@@ -36,21 +36,18 @@ public class EShop{
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume the newline character
-
+            
             switch (choice) {
                 case 1:
-                    Products.checkStock();
+                    Products.checkStock(products);
                     break;
                 case 2:
-                    Products.changeThings(scanner, scanner2);
+                    Products.changeThings(scanner, scanner2, products);
                     break;
                 case 3:
-                    Categories.sortInCategories(scanner);
+                    Products.openPricingPage(scanner,products);
                     break;
                 case 4:
-                    Products.openPricingPage(scanner);
-                    break;
-                case 5:
                     confirmChanges(scanner);
                     return;
                 default:
