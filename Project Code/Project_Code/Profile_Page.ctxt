@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Profile_Page
-comment1.params=scanner
-comment1.target=void\ showProfilePage(java.util.Scanner)
-comment2.params=
-comment2.target=void\ openList()
+comment1.params=scanner\ u\ UserList\ userConnectionsList
+comment1.target=void\ showProfilePage(java.util.Scanner,\ User_profile,\ java.util.ArrayList,\ java.util.List)
+comment2.params=u\ UserList\ userConnectionsList
+comment2.target=void\ openList(User_profile,\ java.util.ArrayList,\ java.util.List)
 numComments=3

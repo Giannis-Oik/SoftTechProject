@@ -1,31 +1,8 @@
 import java.util.*;
 
 public class EShop{
-    private static final String ADMIN_USERNAME = "admin";
-    private static final String ADMIN_PASSWORD = "admin123";
-    public static void checkadmin(ArrayList<Products> products) {
-        Scanner scanner = new Scanner(System.in);
-        Scanner scanner2 = new Scanner(System.in);
-        System.out.print("Username: ");
-        String username = scanner.nextLine();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-
-        if (!isAdmin(username, password)) {
-            System.out.println("Access denied. Only admin can access this functionality.");
-            return;
-        }
-
-        editEshop(scanner,scanner2,products);
-    }
-
-    private static boolean isAdmin(String username, String password) {
-        return ADMIN_USERNAME.equals(username) && ADMIN_PASSWORD.equals(password);
-    }
-
-    private static void editEshop(Scanner scanner, Scanner scanner2,ArrayList<Products> products){
-         Shop shop = new Shop();
-         while (true) {
+    public static void editEshop(Scanner scanner, Scanner scanner2,ArrayList<Products> products){
+          while (true) {
             System.out.println("----- E-Shop Administration -----");
             System.out.println("1. Check stock");
             System.out.println("2. Change products");
