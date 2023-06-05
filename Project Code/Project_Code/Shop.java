@@ -9,50 +9,10 @@ public class Shop{
         active = true;
         checkout = false;
         products = new ArrayList<>();
-        initializeProducts();
    }
-    
-   public static void initializeProducts() {
-    //products = new ArrayList<>();
-       
-    // Supplements
-        products.add(new Products("Protein Powder 1", 29.99, "Supplements",50));
-        products.add(new Products("Protein Powder 2", 39.99, "Supplements",40));
-        products.add(new Products("Pre-Workout 1", 29.99, "Supplements",100));
-        products.add(new Products("Pre-Workout 2", 39.99, "Supplements",60));
-        products.add(new Products("Magnesium", 19.99, "Supplements",150));
-
-        // Clothes
-        products.add(new Products("T-Shirt", 19.99, "Clothes",80));
-        products.add(new Products("Shorts", 24.99, "Clothes",90));
-        products.add(new Products("Leggings", 29.99, "Clothes",70));
-        products.add(new Products("Hoodie", 39.99, "Clothes",65));
-        products.add(new Products("Jacket", 49.99, "Clothes",30));
-
-        // Shoes
-        products.add(new Products("Running Shoes", 79.99, "Shoes",50));
-        products.add(new Products("Training Shoes", 89.99, "Shoes",30));
-        products.add(new Products("Basketball Shoes", 99.99, "Shoes",40));
-        products.add(new Products("Sneakers", 69.99, "Shoes",20));
-        products.add(new Products("Sandals", 39.99, "Shoes",40));
-
-        // Accessories
-        products.add(new Products("Gym Bag", 39.99, "Accessories",30));
-        products.add(new Products("Water Bottle", 9.99, "Accessories",50));
-        products.add(new Products("Yoga Mat", 19.99, "Accessories",60));
-        products.add(new Products("Resistance Bands", 14.99, "Accessories",100));
-        products.add(new Products("Gloves", 14.99, "Accessories",40));
-
-        // Gear
-        products.add(new Products("Dumbbells", 49.99, "Gear",50));
-        products.add(new Products("Jump Rope", 9.99, "Gear",20));
-        products.add(new Products("Exercise Ball", 29.99, "Gear",15));
-        products.add(new Products("Foam Roller", 19.99, "Gear",30));
-        products.add(new Products("Weight Bench", 149.99, "Gear",20));
-    }
-    
-
-   private void showProducts(String category) {
+     
+   
+   private void showProducts(String category, ArrayList<Products> products ) {
     System.out.println("Available products in the " + category + " category:");
     for (int i = 0; i < products.size(); i++) {
         Products product = products.get(i);
@@ -105,12 +65,13 @@ public class Shop{
          
       while (active) {
         String category = chooseCategory();
+        ArrayList<Products> products = Main_Menu.products;
         if (category == null) {
                 System.out.println("Exiting shop...");
                 active = false;
                 break;
         }
-        showProducts(category);
+        showProducts(category,products);
     
         System.out.print("Enter the number of the product you want to choose (0 to exit): ");
             int choice = scanner.nextInt();
