@@ -8,13 +8,23 @@ public class Main_Menu
     static ArrayList<Drink> DrinksList = new ArrayList<Drink>();
     static ArrayList<Exercise> ExerciseList = new ArrayList<Exercise>();
     static ArrayList<Meal> MealList = new ArrayList<Meal>();
+    static ArrayList<User_profile> UserList =new ArrayList<User_profile>();
     static ArrayList<Products> products = new ArrayList<Products>();
+    //static ArrayList<Exercise> MiniWorkout = new ArrayList<Exercise>();
     public static void Main_Menu()
     {
-        ExerciseList_init(); Lists_init(); initializeProducts();
+        ExerciseList_init(); Lists_init();
+        User_ProfileList_init();
+    initializeProducts();
+      
+        User_profile u  = User_profile.login(UserList);
+        
+        /*for(User_profile user:UserList)
+        {
+            System.out.println(user.getProfileType());
+        }*/
         
         int count = 1;
-        User_profile u = new User_profile();
         while(count == 1)
         {
             System.out.println("Main menu:");
@@ -48,10 +58,12 @@ public class Main_Menu
                     EShop_Menu.eshopStart();
                     break;
                 case 4:
-                    System.out.println("Check your profile.");
+                    System.out.println("Check and update your profile.");
+                    u.CheckProfile();
                     break;
                 case 5:
                     System.out.println("Daily awards.");
+                    Rewards.DailyRewards(ExerciseList,u);
                     break;
                 case 6:
                     System.out.println("Eshop(admin only).");
@@ -67,6 +79,16 @@ public class Main_Menu
                     break;
             }
         }
+    }
+    
+    private static void User_ProfileList_init()
+    {
+        User_profile u1 = new User_profile("Nikos","nikos1",22,"nikos@gmail.com","male",183,3581,500,70,10,"Silver", "Whatever"); 
+        User_profile u2 = new User_profile("Stamatis","stamatis1",22,"stamatis@gmail.com","male",185,3582,230,82,10,"Silver","Whatever"); 
+        User_profile u3 = new User_profile("Giannis","giannis1",22,"giannis@gmail.com","male",185,3583,300,75,10,"Silver","Whatever"); 
+        User_profile u4 = new User_profile("Dimitris","dimitris1",22,"dimitris@gmail.com","male",183,3584,610,90,10,"Gold","Whatever");
+        
+        UserList.add(u1); UserList.add(u2); UserList.add(u3); UserList.add(u4);
     }
     
     private static void ExerciseList_init()
@@ -161,4 +183,6 @@ public class Main_Menu
         products.add(new Products("Foam Roller", 19.99, "Gear",30));
         products.add(new Products("Weight Bench", 149.99, "Gear",20));
     }
+    
+    
 }
