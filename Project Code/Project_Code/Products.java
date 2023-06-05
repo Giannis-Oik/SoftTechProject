@@ -40,11 +40,7 @@ public class Products {
        System.out.println("Current stock:");
        for (int i = 0; i < products.size(); i++) {
          Products product = products.get(i);
-         System.out.println("ID: " + (i + 1));
-         System.out.println("Name: " + product.getName());
-         System.out.println("Price: " + product.getPrice());
-         System.out.println("Category: " + product.getCategory());
-         System.out.println("Quantity: " + product.getQuantity());
+         System.out.printf("%-20s   %.2f€   %-20s   Quantity: %d\n", product.getName(), product.getPrice(), product.getCategory(), product.getQuantity());
          System.out.println();
        }
     }
@@ -124,11 +120,11 @@ public class Products {
      
     
     public static void openPricingPage(Scanner scanner,ArrayList<Products> products) {
-       System.out.println("Current products and prices:");
-       System.out.println("----------------------------");
-        for(int i = 0; i < products.size(); i++){
+        System.out.println("Current products and prices:");
+        System.out.println("----------------------------");
+       for(int i = 0; i < products.size(); i++){
            Products product = products.get(i);
-           System.out.printf("%-20s $%.2f\n", product.getName(), product.getPrice());
+           System.out.printf("%-20s %.2f€\n", product.getName(), product.getPrice());
        }
 
        System.out.print("Do you want to make changes? (Y/N): ");

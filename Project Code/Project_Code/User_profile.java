@@ -1,9 +1,5 @@
 import java.util.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+
 
 public class User_profile extends User
 {
@@ -24,6 +20,11 @@ public class User_profile extends User
     private String email, sex, type;
     private int age, height, certificate;
     private double weight, certDiscount;
+    private List<String> userMessageList;
+    private List<String> userPostList;
+    private List<String> userConnectionsList;
+    
+    private boolean admin;
     public int points;
     public String category;
     
@@ -32,7 +33,7 @@ public class User_profile extends User
         super(name,password);
     }
     
-    public User_profile(String name,String password, int age, String email, String sex, int height, int cert, int points, double weight, double certDisc, String category, String type)
+    public User_profile(String name,String password, int age, String email, String sex, int height, int cert, int points, double weight, double certDisc, String category, String type,boolean admin)
     {
         super(name,password);
         this.age = age;
@@ -45,6 +46,7 @@ public class User_profile extends User
         this.certDiscount = certDisc;
         this.category = category;
         this.type = type; 
+        this.admin = admin;
     }
     
     public static User_profile login(ArrayList<User_profile> UserList)
@@ -294,7 +296,21 @@ public class User_profile extends User
     }
     
     //Get and set methods:
+    public List<String> getUserMessageList() {
+        return userMessageList;
+    }
     
+    public List<String> getUserConnectionsList() {
+        return userConnectionsList;
+    }
+    
+    public List<String> getUserPostList() {
+        return userPostList;
+    }
+    
+    public boolean getAdmin(){
+        return admin;
+    }
     
     public String getProfileType()
     {

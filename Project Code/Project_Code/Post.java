@@ -1,16 +1,9 @@
-
-
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Post extends Forum{
-    
-    
-    public static void makePost(Scanner scanner) {
+     public static void makePost(Scanner scanner,User_profile u, ArrayList<User_profile> UserList, List<String> userPostList) {
         String post = writePost(scanner);
         System.out.println("----- Post Creation -----");
         System.out.println("Write your post below:");
@@ -18,14 +11,14 @@ public class Post extends Forum{
         // implementation for opening a text editor 
         if (checkPost(post)) {
             System.out.println("Warning: Your post contains inappropriate language.");
+            return;
         }
+        else if(!checkPost(post)){
+            
+            u.getUserPostList().add(post);
 
-        // Save the post to the user's posts
-        List<String> userPostList = userPosts.getOrDefault(currentUser, new ArrayList<>());
-        userPostList.add(post);
-        userPosts.put(currentUser, userPostList);
-
-        System.out.println("Post created successfully.");
+            System.out.println("Post created successfully.");
+        }
     }
     
     private static String writePost(Scanner scanner) {
@@ -34,10 +27,20 @@ public class Post extends Forum{
     }
     
     private static boolean checkPost(String post) {
-        // logic to check for inappropriate language in the post
-        // and return true if any inappropriate language is found, false otherwise
+        List<String> inappropriateWords = new ArrayList<>();
+        inappropriateWords.add("xontros");
+        inappropriateWords.add("kontos");
+        for (String word : inappropriateWords) {
+            Pattern pattern = Pattern.compile("\\b" + word + "\\b", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(post);
+            if (matcher.find()) {
+                return true;
+            }
+        }
         return false;
     }
+    
+    
     
     private static void confirm(String post) {
         System.out.println("Your post: ");

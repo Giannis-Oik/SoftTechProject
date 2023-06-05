@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Post
-comment1.params=scanner
-comment1.target=void\ makePost(java.util.Scanner)
+comment1.params=scanner\ u\ UserList\ userPostList
+comment1.target=void\ makePost(java.util.Scanner,\ User_profile,\ java.util.ArrayList,\ java.util.List)
 comment2.params=scanner
 comment2.target=java.lang.String\ writePost(java.util.Scanner)
 comment3.params=post
