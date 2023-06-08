@@ -1,5 +1,6 @@
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main_Menu 
 {
@@ -8,41 +9,34 @@ public class Main_Menu
     static ArrayList<Exercise> ExerciseList = new ArrayList<Exercise>();
     static ArrayList<Meal> MealList = new ArrayList<Meal>();
     static ArrayList<User_profile> UserList =new ArrayList<User_profile>();
-    static List<String> userMessageList ;
-    static List<String> userConnectionsList;
-    static List<String> userPostList;
     static ArrayList<Products> products = new ArrayList<Products>();
-    //static ArrayList<Exercise> MiniWorkout = new ArrayList<Exercise>();
     public static void Main_Menu()
     {
         ExerciseList_init(); Lists_init();
         User_ProfileList_init();
         initializeProducts();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Are you a user or an admin;(Write which one using lower case letters)");
-        String choice1 = scanner.nextLine();
-        if(choice1.equalsIgnoreCase("user")){
-             User_profile u = User_profile.login(UserList);
-             int count = 1;
-             while(count == 1)
-             {
-                System.out.println("Main menu:");
-                System.out.print("1)Make plan of diet and exercise\n2)Calorie counter\n3)E-Shop\n4)Check your profile\n5)Daily awards\n6)Forum\n7)Exit\n");
+      
+        User_profile u  = User_profile.login(UserList);
+        int count = 1;
+        while(count == 1)
+        {
+            System.out.println("Main menu:");
+            System.out.print("1)Make plan of diet and exercise\n2)Calorie counter\n3)E-Shop\n4)Check your profile\n5)Daily awards\n6)Eshop(admin only)\n7)Forum\n8)Exit\n");
         
-                Scanner input = new Scanner(System.in);
+            Scanner input = new Scanner(System.in);
         
-                System.out.println("Select one of the apps functions by the corresponding number only.");
+            System.out.println("Select one of the apps functions by the corresponding number only.");
         
-                int choice = input.nextInt();
+            int choice = input.nextInt();
         
-               while(choice > 7 || choice < 1)
-               {
-                  System.out.println("Your choice was invalid. Please make another one using the numbers 1 to 8 that correspond to the functions.");
-                  choice = input.nextInt();
-               }
+            while(choice > 8 || choice < 1)
+            {
+                System.out.println("Your choice was invalid. Please make another one using the numbers 1 to 8 that correspond to the functions.");
+                choice = input.nextInt();
+            }
         
-               switch(choice)
-               {
+            switch(choice)
+            {
                 case 1:
                     System.out.println("Make plan of diet and exercise.");
                     Plan.New_Plan(u,ExerciseList,MealList);
@@ -65,101 +59,29 @@ public class Main_Menu
                     Rewards.DailyRewards(ExerciseList,u);
                     break;
                 case 6:
-                    System.out.println("Forum.");
-                    Forum.forum(u,UserList,userMessageList,userConnectionsList,userPostList);
+                    System.out.println("Eshop(admin only).");
+                    EShop.checkadmin(products);
                     break;
                 case 7:
+                    System.out.println("Forum.");
+                    Forum.forum();
+                    break;
+                case 8:
                     System.out.println("Good-bye. Do not forget to follow your plans.");
                     count = 0;
                     break;
-               }
-             }
-        }
-        else if(choice1.equalsIgnoreCase("admin")){
-            User_profile admin = User_profile.login(UserList);
-            if(admin.getAdmin()==true){
-                int count = 1;
-                while(count == 1)
-                {
-                  System.out.println("Main menu:");
-                  System.out.print("1)Make plan of diet and exercise\n2)Calorie counter\n3)E-Shop\n4)Check your profile\n5)Daily awards\n6)Eshop(admin only)\n7)Forum\n8)Exit\n");
-        
-                  Scanner input = new Scanner(System.in);
-                  Scanner scanner2 = new Scanner(System.in);
-        
-                  System.out.println("Select one of the apps functions by the corresponding number only.");
-        
-                  int choice = input.nextInt();
-        
-                  while(choice > 8 || choice < 1)
-                  {
-                    System.out.println("Your choice was invalid. Please make another one using the numbers 1 to 8 that correspond to the functions.");
-                    choice = input.nextInt();
-                  }
-        
-                  switch(choice)
-                  {
-                    case 1:
-                      System.out.println("Make plan of diet and exercise.");
-                       Plan.New_Plan(admin,ExerciseList,MealList);
-                       System.out.println(".\n");
-                       break;
-                    case 2:
-                       System.out.println("Calorie counter.");
-                       Calorie_Counter.CounterStartUp(FoodList, DrinksList, ExerciseList);
-                       break;
-                    case 3:
-                       System.out.println("E-shop.");
-                       EShop_Menu.eshopStart();
-                       break;
-                    case 4:
-                       System.out.println("Check and update your profile.");
-                       admin.CheckProfile();
-                       break;
-                    case 5:
-                       System.out.println("Daily awards.");
-                       Rewards.DailyRewards(ExerciseList,admin);
-                       break;
-                    case 6:
-                       System.out.println("Eshop(admin only).");
-                       EShop.editEshop(scanner,scanner2,products);
-                       break;
-                    case 7:
-                       System.out.println("Forum.");
-                       Forum.forum(admin,UserList,userMessageList,userConnectionsList,userPostList);
-                       break;
-                    case 8:
-                       System.out.println("Good-bye. Do not forget to follow your plans.");
-                       count = 0;
-                       break;
-                 }
-               }
-            }
-            else if(admin.getAdmin()==false){
-                System.out.println("You are not the admin");
-                return;
             }
         }
-        
-        
-        /*for(User_profile user:UserList)
-        {
-            System.out.println(user.getProfileType());
-        }*/
-        
-        
     }
     
     private static void User_ProfileList_init()
     {
-        User_profile u1 = new User_profile("Nikos","nikos1",22,"nikos@gmail.com","male",183,3581,590,70,10,"Silver", "Weightlifting",false); 
-        User_profile u2 = new User_profile("Stamatis","stamatis1",22,"stamatis@gmail.com","male",185,3582,230,82,10,"Silver","Trx",false); 
-        User_profile u3 = new User_profile("Giannis","giannis1",22,"giannis@gmail.com","male",185,3583,300,75,10,"Silver","Crossfit",false); 
-        User_profile u4 = new User_profile("Dimitris","dimitris1",22,"dimitris@gmail.com","male",183,3584,610,90,10,"Gold","Whatever",false);
-        User_profile admin1 = new User_profile("Kogias","kogias1",28,"kogias@gmail.com","male",180,3580,800,80,10,"Gold","Calisthenics",true);
-        User_profile admin2 = new User_profile("Slidis","slidis1",28,"slidis@gmail.com","male",188,3580,800,95,10,"Gold","Calisthenics",true);
+        User_profile u1 = new User_profile("Nikos","nikos1",22,"nikos@gmail.com","male",183,3581,590,70,10,"Silver", "Weightlifting"); 
+        User_profile u2 = new User_profile("Stamatis","stamatis1",22,"stamatis@gmail.com","male",185,3582,230,82,10,"Silver","Trx"); 
+        User_profile u3 = new User_profile("Giannis","giannis1",22,"giannis@gmail.com","male",185,3583,300,75,10,"Silver","Crossfit"); 
+        User_profile u4 = new User_profile("Dimitris","dimitris1",22,"dimitris@gmail.com","male",183,3584,610,90,10,"Gold","Whatever");
+        
         UserList.add(u1); UserList.add(u2); UserList.add(u3); UserList.add(u4);
-        UserList.add(admin1); UserList.add(admin2);
     }
     
     private static void ExerciseList_init()
@@ -254,6 +176,4 @@ public class Main_Menu
         products.add(new Products("Foam Roller", 19.99, "Gear",30));
         products.add(new Products("Weight Bench", 149.99, "Gear",20));
     }
-    
-    
 }

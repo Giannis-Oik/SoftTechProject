@@ -60,7 +60,6 @@ public class Rewards
     }
     public static void updateCategory(User_profile u)
     {
-        System.out.println("Your total points are: "+u.getProfilePoints());
         if(u.getProfilePoints()>=600)
         {
             u.category="Gold";
@@ -117,7 +116,7 @@ public class Rewards
     public void TotalPoints(User_profile u)
     {
         int profPoints=u.getProfilePoints()+miniWorkoutPoints+programPoints+caloriePoints;
-        System.out.println(profPoints);
         u.setProfilePoints(profPoints);
+        System.out.println("Your total points are: "+u.getProfilePoints());
     }
 }
