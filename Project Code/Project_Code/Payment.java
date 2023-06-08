@@ -16,6 +16,7 @@ public class Payment extends Shop {
         this.cardNumber = "";
         this.expirationDate = "";
         this.cvv = "";
+        this.orderList=orderList;
     }
 
     public double getAmount() {
@@ -43,7 +44,7 @@ public class Payment extends Shop {
     }
      
     
-    public void makePayment(double amount) {
+public void makePayment(double amount) {
     Scanner scanner = new Scanner(System.in);
     
     System.out.println("Total amount: " + amount);
@@ -59,14 +60,16 @@ public class Payment extends Shop {
     }
 }
     
-    private void createOrder() {
-     LocalDateTime orderDate = LocalDateTime.now();
+    public void createOrder() {
+    LocalDateTime orderDate = LocalDateTime.now();
     String status = "Processing";
-    
-    Order order = new Order(orderDate, status);
-    
+  
+    Order order = new Order(products, orderDate, status);
+  
     order.setStatus("Processing");
+    order.updateProductQuantities(Shop.getAvailableProducts());
+    orderList.add(order);
 }
-
+ 
     
 }

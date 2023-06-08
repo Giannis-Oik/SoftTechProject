@@ -2,11 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-class Order_Tracker {
+class Order_Tracker extends EShop_Menu {
     private ArrayList<Order> orderList;
 
-    public Order_Tracker() {
-        orderList = new ArrayList<>();
+    public Order_Tracker(ArrayList<Order> orderList) {
+        
+        this.orderList = orderList;
     }
 
     public void addOrder(Order order) {
@@ -49,7 +50,7 @@ class Order_Tracker {
     
 }
 
-    public void calculateDateOfArrival(Order order) {
+    public  void calculateDateOfArrival(Order order) {
     LocalDateTime orderDate = order.getOrderDate();
     LocalDateTime dateOfArrival = orderDate.plusDays(5); 
 

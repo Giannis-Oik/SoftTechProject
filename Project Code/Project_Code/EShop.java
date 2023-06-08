@@ -12,7 +12,7 @@ public class EShop{
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // consume the newline character
+            scanner.nextLine(); 
             
             switch (choice) {
                 case 1:
