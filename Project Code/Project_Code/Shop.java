@@ -1,16 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Shop{
-   boolean active;
-   boolean checkout;
-   static ArrayList<Products> products;
-   //products = new ArrayList<>();
+public class Shop extends EShop_Menu{
+   private boolean active;
+    private boolean checkout;
+     public static ArrayList<Products> products;
+
    public Shop() {
         active = true;
         checkout = false;
         products = new ArrayList<>();
    }
-     
+   
+      public static ArrayList<Products> getAvailableProducts() {
+        return products;
+    }
    
    private void showProducts(String category, ArrayList<Products> products ) {
     System.out.println("Available products in the " + category + " category:");
@@ -54,7 +57,7 @@ public class Shop{
 
 
     
-   public void addToCart(Products product) {
+   public static void addToCart(Products product) {
         products.add(product);
     }
     
@@ -98,24 +101,25 @@ public class Shop{
    }  
   }
 
-   private void checkoutProcess() {
-        checkout = true;
+   public void checkoutProcess() {
+        
 
-        Checkout checkout = new Checkout();
+        Checkout checkout = new Checkout(products);
         double totalAmount=checkout.calculateTotal(products);
         giveAddress(checkout);
-        totalAmount=checkout.calculateTotalWithTravelCosts(products);
+        totalAmount=checkout.calculateTotalWithTravelCosts(2.99);
         //edw prepei na elegxoume pws tha ginei h syndesh me ta discounts
-        //checkout.calculateTotalWithDiscount(products);
+        //checkout.calculateTotalWithDiscount(discount);
         
         Payment payment = new Payment(totalAmount);
-        payment.makePayment(checkout.getTotalAmount());
+        
         String chosenPaymentMethod = choosePaymentMethod();
         
         if (chosenPaymentMethod.equalsIgnoreCase("card")) {
             provideCardDetails(payment);
+            payment.makePayment(checkout.getTotalAmount());
         } else {
-            checkout.calculateTotalWithCOD(products, 10);
+            checkout.calculateTotalWithCOD(3.49);
         }
 
         if (!confirmPayment(payment)) {

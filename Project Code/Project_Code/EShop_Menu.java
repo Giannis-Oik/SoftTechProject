@@ -1,5 +1,7 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class EShop_Menu {
+    public static ArrayList<Order> orderList = new ArrayList<>();
    static void eshopStart(){
         System.out.println("1.Browse Shop, 2.Order Tracking");
         Scanner input = new Scanner(System.in);
@@ -18,7 +20,9 @@ public class EShop_Menu {
    }
 
    static void openTracker(){
-    Order_Tracker orderTracker = new Order_Tracker();//apo to menou tou eshop pame sto order tracking kommati tou
- 
+   
+       Order_Tracker orderTracker = new Order_Tracker(orderList);//apo to menou tou eshop pame sto order tracking kommati tou
+
+       orderTracker.track_ordering();
    }
 }
