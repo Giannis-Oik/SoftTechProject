@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=EShop_Menu
+comment1.params=u
+comment1.target=void\ eshopStart(User_profile)
+comment2.params=u
+comment2.target=void\ openEShop(User_profile)
+comment3.params=
+comment3.target=void\ openTracker()
+numComments=4

@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Shop
+comment1.params=
+comment1.target=Shop()
+comment10.params=payment
+comment10.target=boolean\ confirmPayment(Payment)
+comment11.params=checkout
+comment11.target=void\ giveAddress(Checkout)
+comment2.params=
+comment2.target=java.util.ArrayList\ getAvailableProducts()
+comment3.params=category\ products
+comment3.target=void\ showProducts(java.lang.String,\ java.util.ArrayList)
+comment4.params=
+comment4.target=java.lang.String\ chooseCategory()
+comment5.params=product
+comment5.target=void\ addToCart(Products)
+comment6.params=u
+comment6.target=void\ browseShop(User_profile)
+comment7.params=u
+comment7.target=void\ checkoutProcess(User_profile)
+comment8.params=
+comment8.target=java.lang.String\ choosePaymentMethod()
+comment9.params=payment
+comment9.target=void\ provideCardDetails(Payment)
+numComments=12

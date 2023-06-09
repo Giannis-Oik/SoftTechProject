@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Exercise_Plan
+comment1.params=
+comment1.target=Exercise_Plan()
+comment2.params=u\ ExerciseList
+comment2.target=void\ Make_ExPlan(User_profile,\ java.util.ArrayList)
+comment3.params=
+comment3.target=int[]\ Show_Options()
+comment4.params=days\ type\ ExerciseList
+comment4.target=void\ Make_Plan(int,\ int,\ java.util.ArrayList)
+comment5.params=type
+comment5.target=void\ Show_Plan(int)
+comment6.params=
+comment6.target=boolean\ Make_changes()
+comment7.params=u
+comment7.target=void\ Save_plan(User_profile)
+numComments=8

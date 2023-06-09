@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Order
+comment1.params=orderedProducts\ orderDate\ status
+comment1.target=Order(java.util.ArrayList,\ java.time.LocalDateTime,\ java.lang.String)
+comment10.params=availableProducts
+comment10.target=boolean\ hasSufficientStock(java.util.ArrayList)
+comment11.params=availableProducts
+comment11.target=void\ updateProductQuantities(java.util.ArrayList)
+comment2.params=
+comment2.target=int\ getOrderID()
+comment3.params=
+comment3.target=java.time.LocalDateTime\ getOrderDate()
+comment4.params=
+comment4.target=java.lang.String\ getStatus()
+comment5.params=status
+comment5.target=void\ setStatus(java.lang.String)
+comment6.params=
+comment6.target=java.util.ArrayList\ getOrderedProducts()
+comment7.params=product
+comment7.target=void\ addProductToOrder(Products)
+comment8.params=
+comment8.target=java.lang.String\ getDateOfArrival()
+comment9.params=dateOfArrival
+comment9.target=void\ setDateOfArrival(java.lang.String)
+numComments=12
