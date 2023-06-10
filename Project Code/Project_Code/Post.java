@@ -4,10 +4,10 @@ import java.util.regex.Matcher;
 
 public class Post extends Forum{
      public static void makePost(Scanner scanner,User_profile u, ArrayList<User_profile> UserList, List<String> userPostList) {
-        String post = writePost(scanner);
         System.out.println("----- Post Creation -----");
         System.out.println("Write your post below:");
         System.out.println("-------------------------");
+        String post = writePost(scanner);
         // implementation for opening a text editor 
         if (checkPost(post)) {
             System.out.println("Warning: Your post contains inappropriate language.");
@@ -19,7 +19,7 @@ public class Post extends Forum{
 
             System.out.println("Post created successfully.");
         }
-    }
+     }
     
     private static String writePost(Scanner scanner) {
         System.out.print("Enter your post: ");
