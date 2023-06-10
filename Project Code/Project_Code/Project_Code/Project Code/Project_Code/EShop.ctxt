@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=EShop
-comment1.params=scanner\ scanner2\ products
-comment1.target=void\ editEshop(java.util.Scanner,\ java.util.Scanner,\ java.util.ArrayList)
-comment2.params=scanner
-comment2.target=void\ confirmChanges(java.util.Scanner)
-numComments=3

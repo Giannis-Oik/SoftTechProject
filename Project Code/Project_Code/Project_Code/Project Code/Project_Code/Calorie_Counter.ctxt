@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=Calorie_Counter
-comment1.params=FoodList\ DrinksList\ ExerciseList
-comment1.target=void\ CounterStartUp(java.util.ArrayList,\ java.util.ArrayList,\ java.util.ArrayList)
-comment2.params=FoodList\ DrinksList
-comment2.target=void\ ConsumptionCalc(java.util.ArrayList,\ java.util.ArrayList)
-comment3.params=ExerciseList
-comment3.target=void\ BurntCalc(java.util.ArrayList)
-numComments=4
