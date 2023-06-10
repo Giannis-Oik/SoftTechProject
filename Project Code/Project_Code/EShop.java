@@ -6,9 +6,8 @@ public class EShop{
             System.out.println("----- E-Shop Administration -----");
             System.out.println("1. Check stock");
             System.out.println("2. Change products");
-            System.out.println("3. Sort products in categories");
-            System.out.println("4. Change prices");
-            System.out.println("5. Confirm and exit");
+            System.out.println("3. Change prices");
+            System.out.println("4. Confirm and exit");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
