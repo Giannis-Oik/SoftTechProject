@@ -54,7 +54,7 @@ public class Main_Menu
                     break;
                 case 3:
                     System.out.println("E-shop.");
-                    EShop_Menu.eshopStart();
+                    EShop_Menu.eshopStart(u);
                     break;
                 case 4:
                     System.out.println("Check and update your profile.");
@@ -110,7 +110,7 @@ public class Main_Menu
                        break;
                     case 3:
                        System.out.println("E-shop.");
-                       EShop_Menu.eshopStart();
+                       EShop_Menu.eshopStart(admin);
                        break;
                     case 4:
                        System.out.println("Check and update your profile.");

@@ -62,7 +62,7 @@ public class Shop extends EShop_Menu{
     }
     
     
-   public void browseShop(){
+   public void browseShop(User_profile u){
       Scanner scanner = new Scanner(System.in);
         
          
@@ -86,7 +86,7 @@ public class Shop extends EShop_Menu{
            System.out.print("Product added to cart. Do you want to proceed to checkout? (Y/N): ");
            String checkoutChoice = scanner.next();
            if (checkoutChoice.equalsIgnoreCase("Y")) {
-                checkoutProcess();
+                checkoutProcess(u);
                 break;
            }
            else if (choice == 0) {
@@ -101,15 +101,15 @@ public class Shop extends EShop_Menu{
    }  
   }
 
-   public void checkoutProcess() {
+   public void checkoutProcess(User_profile u) {
         
 
         Checkout checkout = new Checkout(products);
         double totalAmount=checkout.calculateTotal(products);
+       
+        checkout.calculateTotalWithDiscount(u.getProfileDiscount());
         giveAddress(checkout);
         totalAmount=checkout.calculateTotalWithTravelCosts(2.99);
-        //edw prepei na elegxoume pws tha ginei h syndesh me ta discounts
-        //checkout.calculateTotalWithDiscount(discount);
         
         Payment payment = new Payment(totalAmount);
         
