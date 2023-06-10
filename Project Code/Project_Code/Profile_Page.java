@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Profile_Page extends Forum{
+    public static ArrayList<String> userConnectionsList2 = new ArrayList<String>();
     public static void showProfilePage(Scanner scanner,User_profile u,ArrayList<User_profile> UserList,List<String> userConnectionsList ) {
         System.out.println("----- Profile Page -----");
         System.out.println("1. Open user list");
@@ -58,7 +59,8 @@ public class Profile_Page extends Forum{
             String choice2 = scanner2.nextLine();
             if(choice2.equalsIgnoreCase("Y")){
                 System.out.println("You followed user: " + selectedUser.getProfileName());
-                u.getUserConnectionsList().add(selectedUser.getProfileName());
+                userConnectionsList2.add(selectedUser.getProfileName());
+                u.setUserConnectionsList(userConnectionsList2);
 
                 System.out.println("Connection added successfully.");
             }

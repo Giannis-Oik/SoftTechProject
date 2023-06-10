@@ -1,7 +1,7 @@
 import java.util.*;
 public class Mini_Workout
 {
-    static void showMiniWorkout(ArrayList<Exercise> ExerciseList)
+    public static void showMiniWorkout(ArrayList<Exercise> ExerciseList)
     {
         Collections.shuffle(ExerciseList);
         Exercise e;
@@ -48,7 +48,7 @@ public class Mini_Workout
             e=ExerciseList.get(5);
             System.out.println(e.getExerName());
         }
-        else if(day==7)
+        else if(day==0)
         {
             System.out.println("Today is Sunday.This is the daily mini workout: ");
             Collections.shuffle(ExerciseList);

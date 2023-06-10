@@ -117,15 +117,16 @@ public class Shop extends EShop_Menu{
         
         if (chosenPaymentMethod.equalsIgnoreCase("card")) {
             provideCardDetails(payment);
-            payment.makePayment(checkout.getTotalAmount());
+            payment.createOrder();
         } else {
             checkout.calculateTotalWithCOD(3.49);
+            payment.createOrder();
         }
 
         if (!confirmPayment(payment)) {
             active = true;
         } else {
-            System.out.println("Your shopping has ended");
+            System.out.println("We are processing your order! Thank you for choosing us! ");
         }
     }
  

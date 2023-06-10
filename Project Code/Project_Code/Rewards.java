@@ -23,33 +23,33 @@ public class Rewards
         Scanner input2=new Scanner(System.in);
         System.out.println("Did you complete the daily mini workout? ");
         String yesno=input2.nextLine();
-        if(yesno.equals("yes"))
+        if(yesno.equalsIgnoreCase("yes") || yesno.equalsIgnoreCase("y"))
         {
             rewards.addMiniWorkoutPoints();
         }
-        else if(yesno.equals("no"))
+        else
         {
             System.out.println("Next time complete it to gain points! ");
         }
         System.out.println("Did you complete your personal workout? ");
         String yesno2=input2.nextLine();
-        if(yesno.equals("yes"))
+        if(yesno.equalsIgnoreCase("yes") || yesno.equalsIgnoreCase("y"))
         {
             rewards.addProgramPoints();
         }
-        else if(yesno.equals("no"))
+        else
         {
             rewards.deduceProgramPoints();
         }
         Scanner input3=new Scanner(System.in);
         System.out.println("Did you consume within 200 calories more or less than your diet says so? ");
         String yesno3=input3.nextLine();
-        if(yesno3.equals("yes"))
+        if(yesno.equalsIgnoreCase("yes") || yesno.equalsIgnoreCase("y"))
         {
             System.out.println("Congratulations for keeping up with your diet! ");
             rewards.addCaloriePoints();
         }
-        else if(yesno3.equals("no"))
+        else
         {
             rewards.deduceCaloriePoints();
         }

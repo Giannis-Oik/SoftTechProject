@@ -44,21 +44,7 @@ public class Payment extends Shop {
     }
      
     
-public void makePayment(double amount) {
-    Scanner scanner = new Scanner(System.in);
-    
-    System.out.println("Total amount: " + amount);
-    System.out.print("Enter payment amount: ");
-    double paymentAmount = scanner.nextDouble();
-    
-    if (paymentAmount >= amount) {
-        System.out.println("Payment successful. Thank you!");
-        createOrder();
-    } else {
-        System.out.println("Insufficient payment amount. Please try again.");
-        makePayment(amount); 
-    }
-}
+
     
     public void createOrder() {
     LocalDateTime orderDate = LocalDateTime.now();
