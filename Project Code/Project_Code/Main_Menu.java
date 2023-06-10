@@ -12,7 +12,7 @@ public class Main_Menu
     static List<String> userConnectionsList;
     static List<String> userPostList;
     static ArrayList<Products> products = new ArrayList<Products>();
-    //static ArrayList<Exercise> MiniWorkout = new ArrayList<Exercise>();
+    
     public static void Main_Menu()
     {
         ExerciseList_init(); Lists_init();
@@ -140,14 +140,6 @@ public class Main_Menu
                 return;
             }
         }
-        
-        
-        /*for(User_profile user:UserList)
-        {
-            System.out.println(user.getProfileType());
-        }*/
-        
-        
     }
     
     private static void User_ProfileList_init()

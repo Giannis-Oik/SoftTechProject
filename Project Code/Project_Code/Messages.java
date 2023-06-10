@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class Messages extends Forum{
+    public static ArrayList<String> userMessageList2 = new ArrayList<String>();
+    public static ArrayList<String> userMessageList3 = new ArrayList<String>();
+    
     public static void openMessages(Scanner scanner,User_profile u, ArrayList<User_profile> UserList, List<String> userMessageList) {
         System.out.println("----- Messages -----");
         System.out.println("1. Show messages");
@@ -48,13 +51,16 @@ public class Messages extends Forum{
             String message = scanner.nextLine();
             String senderName = u.getProfileName();
             String messageWithSender = senderName + ":" + message;
-            u.getUserMessageList().add(message);
-            receiver.getUserMessageList().add(messageWithSender);
+            userMessageList2.add(message);
+            userMessageList3.add(messageWithSender);
+            u.setUserMessageList(userMessageList2);
+            receiver.setUserMessageList(userMessageList3);
             System.out.println("Message sent successfully!");
         }
     }
     
     private static void showMessages(Scanner scanner,User_profile u,List<String> userMessageList,ArrayList<User_profile> UserList) {
+        User_profile.User_Messages_init();
         if (u.getUserMessageList().isEmpty()) {
             System.out.println("You have no messages.");
             return;
@@ -66,29 +72,6 @@ public class Messages extends Forum{
         }
         
         sendMessages(scanner,u,UserList);
-        /*System.out.print("Select a message to respond (enter the number): ");
-        int messageIndex = scanner.nextInt();
-        scanner.nextLine(); // consume the newline character
-
-        if (messageIndex > 0 && messageIndex <= u.getUserMessageList().size()) {
-            String selectedMessage = u.getUserMessageList().get(messageIndex - 1);
-            System.out.println("You selected message: " + selectedMessage);
-
-            // Open text editor for response
-            System.out.println("----- Message Response -----");
-            System.out.println("Write your response below:");
-            System.out.println("-----------------------------");
-            String response = scanner.nextLine();
-
-            // Send response (save it to the original sender's messages)
-            String sender = selectedMessage.split(":")[0];
-            
-            u.getUserMessageList().add(u.getProfileName() + ": " + response);
-            
-
-            System.out.println("Response sent successfully.");
-        } else {
-            System.out.println("Invalid message selection.");
-        }*/
+        
     }
 }
