@@ -28,8 +28,8 @@ public class Profile_Page extends Forum{
 
         // Get the list of users that the current user doesn't follow
         
-         UserList.removeAll(u.getUserConnectionsList());
-         UserList.remove(u);
+        UserList.removeAll(u.getUserConnectionsList());
+        UserList.remove(u);
 
         System.out.println("----- User List -----");
         
@@ -59,8 +59,8 @@ public class Profile_Page extends Forum{
             String choice2 = scanner2.nextLine();
             if(choice2.equalsIgnoreCase("Y")){
                 System.out.println("You followed user: " + selectedUser.getProfileName());
-                userConnectionsList2.add(selectedUser.getProfileName());
-                u.setUserConnectionsList(userConnectionsList2);
+                
+                u.getUserConnectionsList().add(selectedUser.getProfileName());
 
                 System.out.println("Connection added successfully.");
             }
@@ -68,9 +68,6 @@ public class Profile_Page extends Forum{
                 System.out.println("Returning to menu:");
                 return;
             }
-
-            // Add the connection (follow) between the users
-            
         } else {
             System.out.println("Invalid user selection.");
         }

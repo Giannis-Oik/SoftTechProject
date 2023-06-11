@@ -51,8 +51,7 @@ public class Products {
             System.out.println("----- Change Products -----");
             System.out.println("1. Add product");
             System.out.println("2. Delete product");
-            System.out.println("3. Update product");
-            System.out.println("4. Go back");
+            System.out.println("3. Go back");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
