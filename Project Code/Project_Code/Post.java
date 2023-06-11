@@ -3,26 +3,20 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Post extends Forum{
-    public static ArrayList<String> userPostList2 = new ArrayList<String>();
-    public static void makePost(Scanner scanner,User_profile u, ArrayList<User_profile> UserList, List<String> userPostList) {
+     public static void makePost(Scanner scanner,User_profile u, ArrayList<User_profile> UserList, List<String> userPostList) {
         System.out.println("----- Post Creation -----");
         System.out.println("Write your post below:");
         System.out.println("-------------------------");
-        //String post = writePost(scanner);
-        String post = scanner.nextLine();
-        // implementation for opening a text editor 
+        String post = writePost(scanner);
         if (checkPost(post)) {
             System.out.println("Warning: Your post contains inappropriate language.");
             return;
         }
         else if(!checkPost(post)){
-            System.out.println(post);
-            userPostList2.add(post);
-            for(String word: userPostList2)
-            {
-                System.out.println(word);
-            }
-            u.setUserPostList(userPostList2);
+            
+            u.getUserPostList().add(post);
+            
+
             System.out.println("Post created successfully.");
         }
     }

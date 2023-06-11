@@ -8,9 +8,6 @@ public class Main_Menu
     static ArrayList<Exercise> ExerciseList = new ArrayList<Exercise>();
     static ArrayList<Meal> MealList = new ArrayList<Meal>();
     static ArrayList<User_profile> UserList =new ArrayList<User_profile>();
-    static List<String> userMessageList ;
-    static List<String> userConnectionsList;
-    static List<String> userPostList;
     static ArrayList<Products> products = new ArrayList<Products>();
     
     public static void Main_Menu()
@@ -23,6 +20,9 @@ public class Main_Menu
         String choice1 = scanner.nextLine();
         if(choice1.equalsIgnoreCase("user")){
              User_profile u = User_profile.login(UserList);
+             List<String> userPostList = u.getUserPostList();
+             List<String> userMessageList = u.getUserMessageList();
+             List<String> userConnectionsList = u.getUserConnectionsList();
              int count = 1;
              while(count == 1)
              {
@@ -77,6 +77,9 @@ public class Main_Menu
         }
         else if(choice1.equalsIgnoreCase("admin")){
             User_profile admin = User_profile.login(UserList);
+            List<String> userPostList = admin.getUserPostList();
+            List<String> userMessageList = admin.getUserMessageList();
+            List<String> userConnectionsList = admin.getUserConnectionsList();
             if(admin.getAdmin()==true){
                 int count = 1;
                 while(count == 1)

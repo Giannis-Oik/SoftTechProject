@@ -1,9 +1,5 @@
 import java.util.*;
-
 public class Messages extends Forum{
-    public static ArrayList<String> userMessageList2 = new ArrayList<String>();
-    public static ArrayList<String> userMessageList3 = new ArrayList<String>();
-    
     public static void openMessages(Scanner scanner,User_profile u, ArrayList<User_profile> UserList, List<String> userMessageList) {
         System.out.println("----- Messages -----");
         System.out.println("1. Show messages");
@@ -27,7 +23,6 @@ public class Messages extends Forum{
                 break;
         }
     }
-    
     private static void sendMessages(Scanner scanner, User_profile u, ArrayList<User_profile> UserList){
         System.out.println("Select the user you want to send a message to (enter the number):");
         //UserList.remove(u);
@@ -51,17 +46,13 @@ public class Messages extends Forum{
             String message = scanner.nextLine();
             String senderName = u.getProfileName();
             String messageWithSender = senderName + ":" + message;
-            userMessageList2.add(message);
-            userMessageList3.add(messageWithSender);
-            u.setUserMessageList(userMessageList2);
-            receiver.setUserMessageList(userMessageList3);
+            u.getUserMessageList().add(message);
+            receiver.getUserMessageList().add(messageWithSender);
             System.out.println("Message sent successfully!");
         }
     }
-    
     private static void showMessages(Scanner scanner,User_profile u,List<String> userMessageList,ArrayList<User_profile> UserList) {
-        User_profile.User_Messages_init();
-        if (u.getUserMessageList().isEmpty()) {
+         if (u.getUserMessageList().isEmpty()) {
             System.out.println("You have no messages.");
             return;
         }
@@ -70,8 +61,14 @@ public class Messages extends Forum{
         for (int i = 0; i < u.getUserMessageList().size(); i++) {
             System.out.println((i + 1) + ". " + u.getUserMessageList().get(i));
         }
-        
-        sendMessages(scanner,u,UserList);
-        
+        System.out.println("Would you like to respond to any of them?(Y/N)");
+        String choice = scanner.nextLine();
+        if(choice.equalsIgnoreCase("Y")){
+            sendMessages(scanner,u,UserList);
+        }
+        else if(choice.equalsIgnoreCase("N")){
+            System.out.println("OK. Returning to menu");
+            return;
+        }
     }
-}
+ }

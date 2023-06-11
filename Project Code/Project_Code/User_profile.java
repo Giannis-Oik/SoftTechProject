@@ -22,15 +22,10 @@ public class User_profile extends User
     private double weight, certDiscount;
     
     
-    public static ArrayList<String> userMessageList = new ArrayList<String>(); ;
-    public ArrayList<String> userPostList = new ArrayList<String>();
-    public ArrayList<String> userConnectionsList = new ArrayList<String>();
-    public static void User_Messages_init(){
-       String message1 = new String("Geia");
-       String message2 = new String("Geia ti kaneis?");
-       userMessageList.add(message1);
-       userMessageList.add(message2);
-    }
+    private List<String> userMessageList;
+    private List<String> userPostList;
+    private List<String> userConnectionsList;
+    
     private boolean admin;
     public int points;
     public String category;
@@ -54,9 +49,9 @@ public class User_profile extends User
         this.category = category;
         this.type = type; 
         this.admin = admin;
-        this.userMessageList=userMessageList;
-        this.userPostList=userPostList;
-        this.userConnectionsList=userConnectionsList;
+        userMessageList = new ArrayList<>();
+        userPostList = new ArrayList<>();
+        userConnectionsList = new ArrayList<>();
     }
     
     public static User_profile login(ArrayList<User_profile> UserList)
@@ -306,28 +301,17 @@ public class User_profile extends User
     }
     
     //Get and set methods:
-    public ArrayList<String> getUserMessageList() {
+    public List<String> getUserMessageList() {
         return userMessageList;
     }
     
-    public void setUserMessageList(ArrayList<String> UserMessagesList2){
-        UserMessagesList2.addAll(UserMessagesList2);
-    }
     
-    public ArrayList<String> getUserConnectionsList() {
+    public List<String> getUserConnectionsList() {
         return userConnectionsList;
     }
     
-    public void setUserConnectionsList(ArrayList<String> UserConnectionsList2){
-        UserConnectionsList2.addAll(UserConnectionsList2);
-    }
-    
-    public ArrayList<String> getUserPostList() {
+    public List<String> getUserPostList() {
         return userPostList;
-    }
-    
-    public void setUserPostList(ArrayList<String> UserPostList2){
-        UserPostList2.addAll(UserPostList2);
     }
     
    
