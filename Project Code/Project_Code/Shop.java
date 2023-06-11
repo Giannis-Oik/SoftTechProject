@@ -94,9 +94,13 @@ public class Shop extends EShop_Menu{
                 System.out.println("Exiting shop...");
                 
            } 
-           else {
-                System.out.println("Invalid product choice!");
+          else if (checkoutChoice.equalsIgnoreCase("N")) {
+                System.out.println("Continue Shopping");
            }
+           
+           else{
+            break;}
+           
        }
    }  
   }
